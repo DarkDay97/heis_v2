@@ -112,6 +112,7 @@ void queue_delete_all_orders(){
 }
 
 elev_motor_direction_t queue_get_order(elev_motor_direction_t prev_dir, int pos){
+
     if (prev_dir == DIRN_UP){
         if(queue_check_if_order_above(pos)){
             return DIRN_UP;
