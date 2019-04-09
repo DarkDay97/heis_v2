@@ -1,6 +1,7 @@
 #include "FSM.h"
 #include "elev.h"
 #include "timer.h"
+#include "queue.h"
 
 
 
@@ -33,7 +34,6 @@ void FSM_system_init(){
             elev_set_motor_direction(DIRN_STOP);
             current_state = FLOOR_CLOSED;
             prev_pos = 0;
-
             break;
         }
     }
@@ -41,22 +41,56 @@ void FSM_system_init(){
 
 void FSM_state_machine(){
 
+    queue_take_order();
+
     switch (current_state)
     {
         case FLOOR_CLOSED:
-            /* code */
+            if (elev_get_stop_signal()){
+                current_state = FLOOR_OPEN;
+            } else if (queue_have_orders()){
+                current_state = MOVING;
+                // drive()
+                // update prev_floor
+                // update prev_dir
+            } else if (!queue_have_orders()){
+                prev_dir = DIRN_STOP;
+            }
             break;
 
         case FLOOR_OPEN:
-            /* code */
+            queue_delete_order(elev_get_floor_sensor_signal());
+
+            if (timer_expired()){
+                current_state = FLOOR_CLOSED;
+            } else if (elev_get_stop_signal()){
+                timer_reset();
+                queue_delete_all_orders();
+            }
             break;
 
         case MOVING:
-            /* code */
+            if (elev_get_floor_sensor_signal() +1){
+                if (queue_should_stop_at_floor(prev_dir, elev_get_floor_sensor_signal())){
+                    elev_set_motor_direction(DIRN_STOP);
+                    prev_pos = elev_get_floor_sensor_signal();
+                    timer_reset();
+                    current_state = FLOOR_OPEN;
+                }
+            } else if (elev_get_stop_signal()){
+                elev_set_motor_direction(DIRN_STOP);
+                queue_delete_all_orders();
+                current_state = STATIONARY;
+            }
             break;
 
         case STATIONARY:
-            /* code */
+            if (elev_get_stop_signal()){
+                queue_delete_all_orders();
+            } else if (queue_have_orders()){
+                // drive() "from stationary"
+                current_state = MOVING;
+            }
             break;
 
         case TEST:
