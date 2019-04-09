@@ -8,16 +8,16 @@
 //A list of the orders. 
 //Order is sorted by floor. Each floor has DOWN, COMMAND and UP except for 1. and 4. floor. 
 
-define ORDER_SIZE 10;
+const ORDER_SIZE 10;
 static int orders[ORDER_SIZE] = {0};
 
-void queue_set_order(){
-
-}
+void queue_set_order();
 
 void queue_delete_order();
 
-int queue_get_order();
+int queue_get_order(elev_motor_direction_t dir, int pos){
+
+}
 
 int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
     if (floor < 0){ //in case is called between floors
