@@ -48,6 +48,13 @@ void queue_delete_order(int floor){
     }
 }
 
+void queue_delete_all_orders(){
+    int i;
+    for (i = 0; i < N_FLOORS; i++){
+        queue_delete_order(i);
+    }
+}
+
 int queue_get_order(elev_motor_direction_t prev_dir, int pos){
     if(prev_dir == DIRN_UP){
         if(queue_check_if_order_above(pos)){

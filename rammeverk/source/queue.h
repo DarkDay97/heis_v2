@@ -11,6 +11,9 @@ void queue_set_order();
 //Fjerne bestillingene på den gitte etasjen. Kalles når heisen stopper i en etasje
 void queue_delete_order(int floor);
 
+//Kjører queue_delete_order(int floor) i en løkke over alle etasjer
+void queue_delete_all_orders();
+
 //Hente bestilling fra lista med orders
 int queue_get_order(elev_motor_direction_t dir, int pos);
 
