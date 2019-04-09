@@ -14,6 +14,7 @@ typedef enum {
 } FSM_states_t;
 
 typedef enum {
+    NONE,
     ONE_TWO, 
     TWO_THREE, 
     THREE_FOUR
@@ -23,6 +24,7 @@ static FSM_states_t current_state = FLOOR_CLOSED;
 
 //Gir posisjonen i 0-3. -1 er ugyldig verdi.
 static int prev_pos = -1;
+static FSM_between_floor_pos_t pos_between = NONE;
 
 static elev_motor_direction_t prev_dir = DIRN_STOP;
 
@@ -39,19 +41,28 @@ void FSM_system_init(){
     }
 }
 
+void FSM_update_pos_between(elev_motor_direction_t dir, int pos){
+    if (dir == DIRN_UP){
+        pos_between = pos + 1;
+    } else if (dir == DIRN_DOWN){
+        pos_between = pos;
+    }
+}
+
 void FSM_state_machine(){
 
     queue_take_order();
-
+    
     switch (current_state)
     {
         case FLOOR_CLOSED:
             if (elev_get_stop_signal()){
                 current_state = FLOOR_OPEN;
             } else if (queue_have_orders()){
-                current_state = MOVING;
                 prev_dir = queue_get_order(prev_dir, prev_pos);
                 elev_set_motor_direction(prev_dir);
+                FSM_update_pos_between(prev_dir, prev_pos);
+                
             } else if (!queue_have_orders()){
                 prev_dir = DIRN_STOP;
             }
@@ -70,12 +81,14 @@ void FSM_state_machine(){
 
         case MOVING:
             if (elev_get_floor_sensor_signal() +1){
+                prev_pos = elev_get_floor_sensor_signal();
                 if (queue_should_stop_at_floor(prev_dir, elev_get_floor_sensor_signal())){
                     elev_set_motor_direction(DIRN_STOP);
-                    prev_pos = elev_get_floor_sensor_signal();
                     timer_reset();
                     current_state = FLOOR_OPEN;
-                }
+                } else {
+                    FSM_update_pos_between(prev_dir, prev_pos);
+                    }
             } else if (elev_get_stop_signal()){
                 elev_set_motor_direction(DIRN_STOP);
                 queue_delete_all_orders();
@@ -87,7 +100,8 @@ void FSM_state_machine(){
             if (elev_get_stop_signal()){
                 queue_delete_all_orders();
             } else if (queue_have_orders()){
-                elev_set_motor_direction(queue_get_order(prev_dir, prev_pos));
+                prev_dir = queue_get_order(prev_dir, prev_pos); //Funker ikke nødvendigvis som den skal
+                elev_set_motor_direction(prev_dir);
                 current_state = MOVING;
             }
             break;
