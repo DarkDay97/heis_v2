@@ -1,21 +1,15 @@
 #include "queue.h"
 
 //Ble nødvendig å inkludere elev.h for å kunne lese av knappene ved bestillinger
-#include "elev.h"
 
 #include <stdlib.h>
 
 //A list of the orders. 
 //Order is sorted by floor. Each floor has DOWN, COMMAND and UP except for 1. and 4. floor. 
-const ORDER_SIZE = 10;
+const int ORDER_SIZE = 10;
 static int orders[ORDER_SIZE] = {0};
 
-void queue_set_order(){
-    queue_set_order_commands(); //Ser etter og lagrer bestillinger fra inni heisen
-    queue_set_order_up();       //Ser etter og lagrer bestillinger med oppover-knapper
-    queue_set_order_down();     //Ser etter og lagrer bestillinger med nedover-knapper
-    
-}
+
 
 void queue_delete_order(int floor){
     switch (floor)
@@ -54,37 +48,7 @@ void queue_delete_all_orders(){
     }
 }
 
-int queue_get_order(elev_motor_direction_t prev_dir, int pos){
-    if(prev_dir == DIRN_UP){
-        if(queue_check_if_order_above(pos)){
-            //Legg til logikk som får den til å kjøre oppover
-            //Forslag: return 1;
-            return 1;
-        }
-        else {
-            //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
-            //Forslag: return 0;
-            return 0;
-        }
-    }
-    else if(prev_dir == DIRN_DOWN){
-        if(queue_check_if_order_below(pos)){
-            //Legg til logikk som får den til å kjøre nedover
-            //Forslag: return -1;
-            return -1;
-        }
-        else {
-            //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
-            //Forslag: return 0;
-            return 0;
-        }
-    }
-    else{   //Siste mulighet er at prev_dir == DIRN_STOP
-            //Alle ordre skal ha vært prosesert
-            //Forslag: return 0;
-            return 0;
-    }
-}
+
 
 int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
     if (floor < 0){ //in case is called between floors
@@ -105,17 +69,6 @@ int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
 //--------------------------------------------------------------------
 
 //Hjelpefunksjoner
-
-//Undersøker om det finnes noen bestillinger
-int queue_have_orders(){
-    int i;
-    for (i = 0; i < ORDER_SIZE; i++){
-        if(orders[i]){
-            return 1;
-        }
-    }
-    return 0;
-}
 
 //Undersøker om det finnes noen bestillinger over den gitte posisjonen
 int queue_check_if_order_above(int pos){
@@ -212,4 +165,57 @@ void queue_set_order_down(){
             orders[(d*3)-1] = 1;
         }
     }
+}
+
+//-------------------------------------------------------------------------
+//Public funksjoner
+
+void queue_take_order(){
+    queue_set_order_commands(); //Ser etter og lagrer bestillinger fra inni heisen
+    queue_set_order_up();       //Ser etter og lagrer bestillinger med oppover-knapper
+    queue_set_order_down();     //Ser etter og lagrer bestillinger med nedover-knapper
+    
+}
+
+int queue_get_order(elev_motor_direction_t prev_dir, int pos){
+    if(prev_dir == DIRN_UP){
+        if(queue_check_if_order_above(pos)){
+            //Legg til logikk som får den til å kjøre oppover
+            //Forslag: return 1;
+            return 1;
+        }
+        else {
+            //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
+            //Forslag: return 0;
+            return 0;
+        }
+    }
+    else if(prev_dir == DIRN_DOWN){
+        if(queue_check_if_order_below(pos)){
+            //Legg til logikk som får den til å kjøre nedover
+            //Forslag: return -1;
+            return -1;
+        }
+        else {
+            //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
+            //Forslag: return 0;
+            return 0;
+        }
+    }
+    else{   //Siste mulighet er at prev_dir == DIRN_STOP
+            //Alle ordre skal ha vært prosesert
+            //Forslag: return 0;
+            return 0;
+    }
+}
+
+//Undersøker om det finnes noen bestillinger
+int queue_have_orders(){
+    int i;
+    for (i = 0; i < ORDER_SIZE; i++){
+        if(orders[i]){
+            return 1;
+        }
+    }
+    return 0;
 }
