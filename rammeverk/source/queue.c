@@ -101,6 +101,7 @@ int queue_have_orders(){
     return 0;
 }
 
+//Undersøker om det finnes noen bestillinger over den gitte posisjonen
 int queue_check_if_order_above(int pos){
     int i;
     for (i = pos + 1; i < N_FLOORS; i++){
@@ -134,6 +135,7 @@ int queue_check_if_order_above(int pos){
     return 0;
 }
 
+//Undersøker om det finnes noen bestillinger under den gitte posisjonen
 int queue_check_if_order_below(int pos){
     int i;
     for (i = pos - 1; i >= 0; i--){
@@ -165,6 +167,7 @@ int queue_check_if_order_below(int pos){
     return 0;
 }
 
+//Letter etter og lagrer bestillinger fra innsiden av heisen
 void queue_set_order_commands(){
     int c;
     for (c = 0; c < N_FLOORS; c++){
@@ -175,6 +178,7 @@ void queue_set_order_commands(){
     }
 }
 
+//Leter etter og lagrer bestillinger med oppover-knapper
 void queue_set_order_up(){
     int u;
     for (u = 0; u < N_FLOORS - 1; u++){
@@ -184,6 +188,7 @@ void queue_set_order_up(){
     }
 }
 
+//Leter etter og lagrer bestillinger med nedover-knapper
 void queue_set_order_down(){
     int d;
     for (d = 1; d < N_FLOORS; d++){
