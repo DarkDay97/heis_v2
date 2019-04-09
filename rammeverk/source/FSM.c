@@ -63,10 +63,14 @@ void FSM_state_machine(){
                 current_state = FLOOR_OPEN;
             } else if (queue_have_orders()){
                 prev_dir = queue_get_order(prev_dir, prev_pos);
-                elev_set_motor_direction(prev_dir);
-                FSM_update_pos_between(prev_dir, prev_pos);
-                current_state = MOVING;
-                
+                if(prev_dir){
+                    elev_set_motor_direction(prev_dir);
+                    FSM_update_pos_between(prev_dir, prev_pos);
+                    current_state = MOVING;
+                } else {
+                    timer_reset();
+                    current_state = FLOOR_OPEN;
+                }
             } else if (!queue_have_orders()){
                 prev_dir = DIRN_STOP;
             }
