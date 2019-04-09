@@ -17,6 +17,7 @@ typedef enum {
 
 static FSM_states_t current_state = FLOOR_CLOSED;
 
+//Gir posisjonen i 0-3. -1 er ugyldig verdi.
 static int prev_pos = -1;
 
 static elev_motor_direction_t prev_dir = DIRN_STOP;
@@ -54,6 +55,10 @@ void FSM_system_init(){
     elev_set_motor_direction(DIRN_DOWN);
     while(1){
         if(elev_get_floor_sensor_signal() == 0){
+            elev_set_motor_direction(DIRN_STOP);
+            current_state = FLOOR_CLOSED;
+            prev_pos = 0;
+
             break;
         }
     }
