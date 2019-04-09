@@ -59,21 +59,26 @@ int queue_get_order(elev_motor_direction_t prev_dir, int pos){
     if(prev_dir == DIRN_UP){
         if(queue_check_if_order_above(pos)){
             //Legg til logikk som får den til å kjøre oppover
+            //Forslag: return 1;
         }
         else {
             //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
+            //Forslag: return 0;
         }
     }
     else if(prev_dir == DIRN_DOWN){
         if(queue_check_if_order_below(pos)){
             //Legg til logikk som får den til å kjøre nedover
+            //Forslag: return -1;
         }
         else {
             //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
+            //Forslag: return 0;
         }
     }
     else{   //Siste mulighet er at prev_dir == DIRN_STOP
             //Alle ordre skal ha vært prosesert
+            //Forslag: return 0;
     }
 }
 
