@@ -111,7 +111,16 @@ void queue_delete_all_orders(){
     }
 }
 
-elev_motor_direction_t queue_get_order(elev_motor_direction_t prev_dir, int pos){
+elev_motor_direction_t queue_get_order(elev_motor_direction_t prev_dir, int pos, int pos_between){
+    if(pos_between){
+        if (queue_check_if_order_above(pos_between - 1)){
+            return 1;
+        }
+        if (queue_check_if_order_below(pos_between)){
+            return -1;
+        }
+    }
+
     if (prev_dir == DIRN_UP){
         if(queue_check_if_order_above(pos)){
             return DIRN_UP;
