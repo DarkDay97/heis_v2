@@ -1,11 +1,7 @@
 #include "timer.h"
 
 const int LIMIT = 3; //Timelimit
-static clock_t = clock_var;
-
-void timer_init(){
-    timer_reset();
-}
+static clock_t clock_var;
 
 void timer_reset(){
     clock_var = clock();
