@@ -8,7 +8,7 @@
 //A list of the orders. 
 //Order is sorted by floor. Each floor has DOWN, COMMAND and UP except for 1. and 4. floor. 
 
-const int ORDER_SIZE = 10;
+define ORDER_SIZE 10;
 static int orders[ORDER_SIZE] = {0};
 
 void queue_set_order(){
