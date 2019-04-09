@@ -10,7 +10,8 @@ int main() {
         return 1;
     }
 
-   
+   FSM_system_init();
+
 
     while (1) {
         // Stop elevator and exit program if the obstruction signal is high
@@ -18,6 +19,7 @@ int main() {
             elev_set_motor_direction(DIRN_STOP);
             break;
         }
+        FSM_state_machine();
     }
 
     return 0;
