@@ -11,7 +11,12 @@
 const ORDER_SIZE 10;
 static int orders[ORDER_SIZE] = {0};
 
-void queue_set_order();
+void queue_set_order(){
+    queue_set_order_commands();
+    queue_set_order_up();
+    queue_set_order_down();
+    
+}
 
 void queue_delete_order(int floor){
     switch (floor)
@@ -37,7 +42,7 @@ void queue_delete_order(int floor){
             orders[8] = 0;
             orders[9] = 0;
             break;
-            
+
         default:
             break;
     }
@@ -158,4 +163,32 @@ int queue_check_if_order_below(int pos){
         }
     }
     return 0;
+}
+
+void queue_set_order_commands(){
+    int c;
+    for (c = 0; c < N_FLOORS; c++){
+        if(elev_get_button_signal(BUTTON_COMMAND, c)){
+            orders[c*3] = 1;
+        }
+        
+    }
+}
+
+void queue_set_order_up(){
+    int u;
+    for (u = 0; u < N_FLOORS - 1; u++){
+        if(elev_get_button_signal(BUTTON_CALL_UP, u)){
+            orders[1 + (u*3)] = 1;
+        }
+    }
+}
+
+void queue_set_order_down(){
+    int d;
+    for (d = 1; d < N_FLOORS; d++){
+        if(elev_get_button_signal(BUTTON_CALL_DOWN, d)){
+            orders[(d*3)-1] = 1;
+        }
+    }
 }
