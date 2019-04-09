@@ -13,10 +13,56 @@ static int orders[ORDER_SIZE] = {0};
 
 void queue_set_order();
 
-void queue_delete_order();
+void queue_delete_order(int floor){
+    switch (floor)
+    {
+        case 0:
+            orders[0] = 0;
+            orders[1] = 0;
+            break;
+    
+        case 1:
+            orders[2] = 0;
+            orders[3] = 0;
+            orders[4] = 0;
+            break;
+        
+        case 2:
+            orders[5] = 0;
+            orders[6] = 0;
+            orders[7] = 0;
+            break;
 
-int queue_get_order(elev_motor_direction_t dir, int pos){
+        case 3:
+            orders[8] = 0;
+            orders[9] = 0;
+            break;
+            
+        default:
+            break;
+    }
+}
 
+int queue_get_order(elev_motor_direction_t prev_dir, int pos){
+    if(prev_dir == DIRN_UP){
+        if(queue_check_if_order_above(pos);){
+            //Legg til logikk som får den til å kjøre oppover
+        }
+        else {
+            //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
+        }
+    }
+    else if(prev_dir == DIRN_DOWN){
+        if(queue_check_if_order_below(pos);){
+            //Legg til logikk som får den til å kjøre nedover
+        }
+        else {
+            //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
+        }
+    }
+    else{   //Siste mulighet er at prev_dir == DIRN_STOP
+            //Alle ordre skal ha vært prosesert
+    }
 }
 
 int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
