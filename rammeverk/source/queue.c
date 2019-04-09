@@ -50,9 +50,9 @@ int queue_have_orders(){
     return 0;
 }
 
-int queue_check_if_order_above(int floor){
+int queue_check_if_order_above(int pos){
     int i;
-    for (i = floor + 1; i < N_FLOORS; i++){
+    for (i = pos + 1; i < N_FLOORS; i++){
         if(orders[i*3]){
             return 1;
         }
@@ -83,9 +83,9 @@ int queue_check_if_order_above(int floor){
     return 0;
 }
 
-int queue_check_if_order_below(int floor){
+int queue_check_if_order_below(int pos){
     int i;
-    for (i = floor - 1; i >= 0; i--){
+    for (i = pos - 1; i >= 0; i--){
         if(orders[i*3]){
             return 1;
         }
