@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 SOURCES := main.c elev.c io.c queue.c timer.c FSM.c 
-=======
-SOURCES := main.c elev.c io.c queue.c FSM.c
->>>>>>> FSM
 
 BUILD_DIR := build
 OBJ := $(SOURCES:%.c=$(BUILD_DIR)/%.o)
