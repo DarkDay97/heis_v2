@@ -2,7 +2,6 @@
 #include "elev.h"
 
 typedef enum {
-    INIT, 
     FLOOR_CLOSED, 
     FLOOR_OPEN,
     MOVING, 
@@ -16,7 +15,7 @@ typedef enum {
     THREE_FOUR
 }FSM_between_floor_pos_t;
 
-static FSM_states_t current_state = INIT;
+static FSM_states_t current_state = FLOOR_CLOSED;
 
 static int prev_pos = -1;
 
@@ -26,10 +25,6 @@ void FSM_state_machine(){
 
     switch (current_state)
     {
-        case INIT:
-            /* code */
-            break;
-
         case FLOOR_CLOSED:
             /* code */
             break;
@@ -52,5 +47,14 @@ void FSM_state_machine(){
 
         default:
             break;
+    }
+}
+
+void FSM_system_init(){
+    elev_set_motor_direction(DIRN_DOWN);
+    while(1){
+        if(elev_get_floor_sensor_signal() == 0){
+            break;
+        }
     }
 }
