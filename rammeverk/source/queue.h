@@ -10,16 +10,21 @@
 //Legge til bestillinger
 void queue_take_order();
 
+//Returnerer 1 dersom der er en bestilling på etasje "floor". 0 ellers
+int queue_get_order(int floor);
+
 //Fjerne bestillingene på den gitte etasjen. Kalles når heisen stopper i en etasje
 void queue_delete_order(int floor);
 
 //Kjører queue_delete_order(int floor) i en løkke over alle etasjer
 void queue_delete_all_orders();
 
+
+
 //Hente bestilling fra lista med orders
 //Tanken er at den skal returnere retningen til den neste bestillingen som skal behandles
 //Returnerer enten -1, 0, 1 ettersom den skal nedover, bli stående, eller oppover
-elev_motor_direction_t queue_get_order(elev_motor_direction_t dir, int pos, int pos_between);
+elev_motor_direction_t queue_calculate_direction(elev_motor_direction_t dir, int pos, int pos_between);
 
 //Sjekker om heisen skal stoppe i etasjen gitt i 0-3 med retningen motor_dir
 int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor);

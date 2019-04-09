@@ -73,6 +73,31 @@ void queue_take_order(){
     queue_set_order_down();     //Ser etter og lagrer bestillinger med nedover-knapper
     
 }
+// Returner 1 dersom det kommer en bestilling til etasje "floor"
+int queue_get_order(int floor){
+    switch (floor)
+    {
+        case 0:
+            if (orders[0] | orders[1]) { return 1; }
+            break;
+    
+        case 1:
+            if (orders[2] | orders[3] | orders[4]) { return 1; }
+            break;
+        
+        case 2:
+            if (orders[5] | orders[6] | orders[7]) { return 1; }
+            break;
+
+        case 3:
+            if (orders[8] | orders[9]) { return 1; }
+            break;
+
+        default:
+            break;
+    }
+    return 0;
+}
 
 void queue_delete_order(int floor){
     switch (floor)
@@ -111,7 +136,7 @@ void queue_delete_all_orders(){
     }
 }
 
-elev_motor_direction_t queue_get_order(elev_motor_direction_t prev_dir, int pos, int pos_between){
+elev_motor_direction_t queue_calculate_direction (elev_motor_direction_t prev_dir, int pos, int pos_between){
     if(pos_between){
         if (queue_check_if_order_above(pos_between - 1)){
             return DIRN_UP;
