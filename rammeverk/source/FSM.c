@@ -50,8 +50,8 @@ void FSM_state_machine(){
                 current_state = FLOOR_OPEN;
             } else if (queue_have_orders()){
                 current_state = MOVING;
-                // prev_dir = queue_get_order(prev_dir, prev_pos);
-                // elev_set_motor_direction(prev_dir);
+                prev_dir = queue_get_order(prev_dir, prev_pos);
+                elev_set_motor_direction(prev_dir);
             } else if (!queue_have_orders()){
                 prev_dir = DIRN_STOP;
             }
@@ -87,7 +87,7 @@ void FSM_state_machine(){
             if (elev_get_stop_signal()){
                 queue_delete_all_orders();
             } else if (queue_have_orders()){
-                // elev_set_motor_direction(queue_get_order(prev_dir, prev_pos));
+                elev_set_motor_direction(queue_get_order(prev_dir, prev_pos));
                 current_state = MOVING;
             }
             break;
