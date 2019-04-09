@@ -3,6 +3,7 @@
 #include "timer.h"
 #include "queue.h"
 
+#include <stdio.h>
 
 
 typedef enum {
@@ -53,6 +54,8 @@ void FSM_state_machine(){
 
     queue_take_order();
     
+    printf("current state: %d\n", current_state);
+
     switch (current_state)
     {
         case FLOOR_CLOSED:
@@ -62,6 +65,7 @@ void FSM_state_machine(){
                 prev_dir = queue_get_order(prev_dir, prev_pos);
                 elev_set_motor_direction(prev_dir);
                 FSM_update_pos_between(prev_dir, prev_pos);
+                current_state = MOVING;
                 
             } else if (!queue_have_orders()){
                 prev_dir = DIRN_STOP;
@@ -80,15 +84,13 @@ void FSM_state_machine(){
             break;
 
         case MOVING:
-            if (elev_get_floor_sensor_signal() +1){
-                prev_pos = elev_get_floor_sensor_signal();
+            if (elev_get_floor_sensor_signal() + 1){
                 if (queue_should_stop_at_floor(prev_dir, elev_get_floor_sensor_signal())){
+                    prev_pos = elev_get_floor_sensor_signal();
                     elev_set_motor_direction(DIRN_STOP);
                     timer_reset();
                     current_state = FLOOR_OPEN;
-                } else {
-                    FSM_update_pos_between(prev_dir, prev_pos);
-                    }
+                }
             } else if (elev_get_stop_signal()){
                 elev_set_motor_direction(DIRN_STOP);
                 queue_delete_all_orders();
