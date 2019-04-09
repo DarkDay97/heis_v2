@@ -2,6 +2,8 @@
 #define _FSM__
 
 
+void FSM_state_machine();
+
 
 
 
