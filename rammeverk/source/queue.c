@@ -73,32 +73,9 @@ int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
 //Undersøker om det finnes noen bestillinger over den gitte posisjonen
 int queue_check_if_order_above(int pos){
     int i;
-    for (i = pos + 1; i < N_FLOORS; i++){
-        if(orders[i*3]){
+    for (i = pos*3 + 2; i < ORDER_SIZE; i++){
+        if(orders[i]){
             return 1;
-        }
-        switch (i)
-        {
-            case 1:
-                if(orders[4]){
-                    return 1;
-                }
-                break;
-
-            case 2:
-                if(orders[7]){
-                    return 1;
-                }
-                break;
-
-            case 3:
-                if(orders[8]){
-                    return 1;
-                }
-                break;
-
-            default:
-                break;
         }
     }
     return 0;
@@ -107,30 +84,9 @@ int queue_check_if_order_above(int pos){
 //Undersøker om det finnes noen bestillinger under den gitte posisjonen
 int queue_check_if_order_below(int pos){
     int i;
-    for (i = pos - 1; i >= 0; i--){
-        if(orders[i*3]){
+    for (i = pos*3 - 2; i >= 0; i--){
+        if(orders[i]){
             return 1;
-        }
-        switch (i)
-        {
-            case 2:
-                if(orders[5]){
-                    return 1;
-                }
-                break;
-            case 1:
-                if(orders[2]){
-                    return 1;
-                }
-                break;
-            case 0:
-                if(orders[1]){
-                    return 1;
-                }
-                break;
-        
-            default:
-                break;
         }
     }
     return 0;
