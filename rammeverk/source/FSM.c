@@ -22,6 +22,20 @@ static int prev_pos = -1;
 
 static elev_motor_direction_t prev_dir = DIRN_STOP;
 
+
+void FSM_system_init(){
+    elev_set_motor_direction(DIRN_DOWN);
+    while(1){
+        if(elev_get_floor_sensor_signal() == 0){
+            elev_set_motor_direction(DIRN_STOP);
+            current_state = FLOOR_CLOSED;
+            prev_pos = 0;
+
+            break;
+        }
+    }
+}
+
 void FSM_state_machine(){
 
     switch (current_state)
@@ -48,18 +62,5 @@ void FSM_state_machine(){
 
         default:
             break;
-    }
-}
-
-void FSM_system_init(){
-    elev_set_motor_direction(DIRN_DOWN);
-    while(1){
-        if(elev_get_floor_sensor_signal() == 0){
-            elev_set_motor_direction(DIRN_STOP);
-            current_state = FLOOR_CLOSED;
-            prev_pos = 0;
-
-            break;
-        }
     }
 }
