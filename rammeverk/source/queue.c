@@ -9,65 +9,6 @@
 const int ORDER_SIZE = 10;
 static int orders[ORDER_SIZE] = {0};
 
-
-
-void queue_delete_order(int floor){
-    switch (floor)
-    {
-        case 0:
-            orders[0] = 0;
-            orders[1] = 0;
-            break;
-    
-        case 1:
-            orders[2] = 0;
-            orders[3] = 0;
-            orders[4] = 0;
-            break;
-        
-        case 2:
-            orders[5] = 0;
-            orders[6] = 0;
-            orders[7] = 0;
-            break;
-
-        case 3:
-            orders[8] = 0;
-            orders[9] = 0;
-            break;
-
-        default:
-            break;
-    }
-}
-
-void queue_delete_all_orders(){
-    int i;
-    for (i = 0; i < N_FLOORS; i++){
-        queue_delete_order(i);
-    }
-}
-
-
-
-int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
-    if (floor < 0){ //in case is called between floors
-        return 0;
-    }
-    else if (((motor_dir == DIRN_DOWN) & (floor == 0)) | ((motor_dir == DIRN_UP) & (floor == 3))){   //Sørger for at heisen ikke kjører forbi endene
-        return 1;
-    }
-    else if (orders[floor*3]){
-        return 1;
-    }
-    else if(orders[floor*3 + motor_dir]){
-        return 1;
-    }
-    else {return 0;}
-}
-
-//--------------------------------------------------------------------
-
 //Hjelpefunksjoner
 
 //Undersøker om det finnes noen bestillinger over den gitte posisjonen
@@ -92,7 +33,7 @@ int queue_check_if_order_below(int pos){
     return 0;
 }
 
-//Letter etter og lagrer bestillinger fra innsiden av heisen
+//Leter etter og lagrer bestillinger fra innsiden av heisen
 void queue_set_order_commands(){
     int c;
     for (c = 0; c < N_FLOORS; c++){
@@ -133,6 +74,43 @@ void queue_take_order(){
     
 }
 
+void queue_delete_order(int floor){
+    switch (floor)
+    {
+        case 0:
+            orders[0] = 0;
+            orders[1] = 0;
+            break;
+    
+        case 1:
+            orders[2] = 0;
+            orders[3] = 0;
+            orders[4] = 0;
+            break;
+        
+        case 2:
+            orders[5] = 0;
+            orders[6] = 0;
+            orders[7] = 0;
+            break;
+
+        case 3:
+            orders[8] = 0;
+            orders[9] = 0;
+            break;
+
+        default:
+            break;
+    }
+}
+
+void queue_delete_all_orders(){
+    int i;
+    for (i = 0; i < N_FLOORS; i++){
+        queue_delete_order(i);
+    }
+}
+
 elev_motor_direction_t queue_get_order(elev_motor_direction_t prev_dir, int pos){
     if (prev_dir == DIRN_UP){
         if(queue_check_if_order_above(pos)){
@@ -153,6 +131,28 @@ elev_motor_direction_t queue_get_order(elev_motor_direction_t prev_dir, int pos)
     return DIRN_STOP;
 }
 
+int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
+    if (floor < 0){ //in case is called between floors
+        return 0;
+    }
+    if (((motor_dir == DIRN_DOWN) & (floor == 0)) | ((motor_dir == DIRN_UP) & (floor == 3))){   //Sørger for at heisen ikke kjører forbi endene
+        return 1;
+    }
+    if (orders[floor*3]){
+        return 1;
+    }
+    if(orders[floor*3 + motor_dir]){
+        return 1;
+    }
+    if ((motor_dir == DIRN_UP) & (!(queue_check_if_order_above(floor)))){
+        return 1;
+    }
+    if ((motor_dir == DIRN_DOWN) & (!(queue_check_if_order_below(floor)))){
+        return 1;
+    }
+    else {return 0;}
+}
+
 //Undersøker om det finnes noen bestillinger
 int queue_have_orders(){
     int i;
@@ -163,3 +163,10 @@ int queue_have_orders(){
     }
     return 0;
 }
+
+
+
+
+
+
+
