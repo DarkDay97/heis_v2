@@ -8,13 +8,13 @@
 //A list of the orders. 
 //Order is sorted by floor. Each floor has DOWN, COMMAND and UP except for 1. and 4. floor. 
 
-const ORDER_SIZE 10;
+const ORDER_SIZE = 10;
 static int orders[ORDER_SIZE] = {0};
 
 void queue_set_order(){
-    queue_set_order_commands();
-    queue_set_order_up();
-    queue_set_order_down();
+    queue_set_order_commands(); //Ser etter og lagrer bestillinger fra inni heisen
+    queue_set_order_up();       //Ser etter og lagrer bestillinger med oppover-knapper
+    queue_set_order_down();     //Ser etter og lagrer bestillinger med nedover-knapper
     
 }
 
@@ -50,7 +50,7 @@ void queue_delete_order(int floor){
 
 int queue_get_order(elev_motor_direction_t prev_dir, int pos){
     if(prev_dir == DIRN_UP){
-        if(queue_check_if_order_above(pos);){
+        if(queue_check_if_order_above(pos)){
             //Legg til logikk som får den til å kjøre oppover
         }
         else {
@@ -58,7 +58,7 @@ int queue_get_order(elev_motor_direction_t prev_dir, int pos){
         }
     }
     else if(prev_dir == DIRN_DOWN){
-        if(queue_check_if_order_below(pos);){
+        if(queue_check_if_order_below(pos)){
             //Legg til logikk som får den til å kjøre nedover
         }
         else {
