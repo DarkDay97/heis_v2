@@ -7,7 +7,6 @@
 
 //A list of the orders. 
 //Order is sorted by floor. Each floor has DOWN, COMMAND and UP except for 1. and 4. floor. 
-
 const ORDER_SIZE = 10;
 static int orders[ORDER_SIZE] = {0};
 
@@ -60,25 +59,30 @@ int queue_get_order(elev_motor_direction_t prev_dir, int pos){
         if(queue_check_if_order_above(pos)){
             //Legg til logikk som får den til å kjøre oppover
             //Forslag: return 1;
+            return 1;
         }
         else {
             //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
             //Forslag: return 0;
+            return 0;
         }
     }
     else if(prev_dir == DIRN_DOWN){
         if(queue_check_if_order_below(pos)){
             //Legg til logikk som får den til å kjøre nedover
             //Forslag: return -1;
+            return -1;
         }
         else {
             //Legg til logikk for at den skal ha retning DIRN_STOP, ellerno
             //Forslag: return 0;
+            return 0;
         }
     }
     else{   //Siste mulighet er at prev_dir == DIRN_STOP
             //Alle ordre skal ha vært prosesert
             //Forslag: return 0;
+            return 0;
     }
 }
 
