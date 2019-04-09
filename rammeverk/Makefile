@@ -1,4 +1,4 @@
-SOURCES := main.c elev.c io.c queue.c timer.c FSM.c 
+SOURCES := main.c elev.c io.c queue.c timer.c FSM.c lights.c
 
 
 BUILD_DIR := build
