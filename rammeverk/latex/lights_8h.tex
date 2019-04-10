@@ -1,0 +1,54 @@
+\hypertarget{lights_8h}{}\section{source/lights.h File Reference}
+\label{lights_8h}\index{source/lights.\+h@{source/lights.\+h}}
+
+
+A library containing the functions regarding the lights module.  
+
+
+{\ttfamily \#include \char`\"{}elev.\+h\char`\"{}}\\*
+Include dependency graph for lights.\+h\+:
+% FIG 0
+This graph shows which files directly or indirectly include this file\+:
+% FIG 1
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{lights_8h_af2210991bdfe739662bce1dd46388d27}{lights\+\_\+update\+\_\+ordering\+\_\+lights} ()\hypertarget{lights_8h_af2210991bdfe739662bce1dd46388d27}{}\label{lights_8h_af2210991bdfe739662bce1dd46388d27}
+
+\begin{DoxyCompactList}\small\item\em Updates the ordering lights, on or off, according to the array \char`\"{}lights\char`\"{}. \end{DoxyCompactList}\item 
+void \hyperlink{lights_8h_a58b09ecf86cc9bea3fa553d42e42201e}{lights\+\_\+reset\+\_\+lights\+\_\+array} (int floor)
+\begin{DoxyCompactList}\small\item\em Sets the values in the array \char`\"{}lights\char`\"{} for the ordering lights to the corresponding floor to 0. \end{DoxyCompactList}\item 
+void \hyperlink{lights_8h_a525e8ec717482b4c1803e43727d077e4}{lights\+\_\+reset\+\_\+all\+\_\+lights\+\_\+array} ()\hypertarget{lights_8h_a525e8ec717482b4c1803e43727d077e4}{}\label{lights_8h_a525e8ec717482b4c1803e43727d077e4}
+
+\begin{DoxyCompactList}\small\item\em Sets all the values in the array \char`\"{}lights\char`\"{} to 0. \end{DoxyCompactList}\item 
+void \hyperlink{lights_8h_a3c3b7cf2e4b61c1830f26da19bab93c0}{lights\+\_\+set\+\_\+lights\+\_\+array} ()\hypertarget{lights_8h_a3c3b7cf2e4b61c1830f26da19bab93c0}{}\label{lights_8h_a3c3b7cf2e4b61c1830f26da19bab93c0}
+
+\begin{DoxyCompactList}\small\item\em Gets signal from ordering button, and sets the corresponding element in the \char`\"{}lights\char`\"{} array to 1. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+A library containing the functions regarding the lights module. 
+
+
+
+\subsection{Function Documentation}
+\index{lights.\+h@{lights.\+h}!lights\+\_\+reset\+\_\+lights\+\_\+array@{lights\+\_\+reset\+\_\+lights\+\_\+array}}
+\index{lights\+\_\+reset\+\_\+lights\+\_\+array@{lights\+\_\+reset\+\_\+lights\+\_\+array}!lights.\+h@{lights.\+h}}
+\subsubsection[{\texorpdfstring{lights\+\_\+reset\+\_\+lights\+\_\+array(int floor)}{lights_reset_lights_array(int floor)}}]{\setlength{\rightskip}{0pt plus 5cm}void lights\+\_\+reset\+\_\+lights\+\_\+array (
+\begin{DoxyParamCaption}
+\item[{int}]{floor}
+\end{DoxyParamCaption}
+)}\hypertarget{lights_8h_a58b09ecf86cc9bea3fa553d42e42201e}{}\label{lights_8h_a58b09ecf86cc9bea3fa553d42e42201e}
+
+
+Sets the values in the array \char`\"{}lights\char`\"{} for the ordering lights to the corresponding floor to 0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em floor} & The floor where the ordering lights will be turned off. Must be an integer in range 0-\/3. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 39 of file lights.\+c.
+

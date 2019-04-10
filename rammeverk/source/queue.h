@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief A library containing functions regarding the queue module
+ */
+
 //These functions dictate the logic behind the queue-system
 
 //2019, Audun Birkenes og Jonas Rogde Jørgensen
@@ -7,29 +12,61 @@
 
 #include "elev.h"
 
-//Legge til bestillinger
+/**
+ * @brief Sets the value in the array "orders" to the corresponding order to 1.
+ */
 void queue_take_order();
 
-//Returnerer 1 dersom der er en bestilling på etasje "floor". 0 ellers
+/**
+ * @brief Checks if there are any orders to given floor.
+ * 
+ * @param[in] floor The floor where the function looks for orders. Must be an integer in range 0-3.
+ * 
+ * @return 1 if there is an order at floor @p floor. 0 otherwise.
+ */
 int queue_get_order(int floor);
 
-//Fjerne bestillingene på den gitte etasjen. Kalles når heisen stopper i en etasje
+/**
+ * @brief Sets the value in the array "orders" to the corresponding order to 0.
+ * 
+ * @param[in] floor The floor where the function deletes the corresponding orders. Must be an integer in range 0-3.
+ */
 void queue_delete_order(int floor);
 
-//Kjører queue_delete_order(int floor) i en løkke over alle etasjer
+/**
+ * @brief Sets all values in the array "orders" to 0.
+ */
 void queue_delete_all_orders();
 
-
-
-//Hente bestilling fra lista med orders
-//Tanken er at den skal returnere retningen til den neste bestillingen som skal behandles
-//Returnerer enten -1, 0, 1 ettersom den skal nedover, bli stående, eller oppover
+/**
+ * @brief Calculates the elevator's next direction.
+ * 
+ * @param[in] dir The direction of the elevator's movement. Must have the following values: DIRN_DOWN = -1, DIRN_STOP = 0 or DIRN_UP = 1.
+ * 
+ * @param[in] pos Previous detected floor by sensor. Must be in range 0-3.
+ * 
+ * @param[in] pos_between Keeps track of which floors the elevator is located between at any given time. Must be in range 1-3.
+ * 
+ * @return DIRN_DOWN = -1 when moving down. DIRN_STOP = 0 when stationary. DIRN_UP = 1 when moving up.
+ */
 elev_motor_direction_t queue_calculate_direction(elev_motor_direction_t dir, int pos, int pos_between);
 
-//Sjekker om heisen skal stoppe i etasjen gitt i 0-3 med retningen motor_dir
+/**
+ * @brief Checks if the elevator should stop at the given floor.
+ * 
+ * @param[in] motor_dir The direction of the elevator's movement. Must have the following values: DIRN_DOWN = -1, DIRN_STOP = 0 or DIRN_UP = 1.
+ * 
+ * @param[in] floor The floor where the function checks if it should stop. Must be an integer in range 0-3.
+ * 
+ * @return 1 if elevator should stop. 0 otherwise.
+ */
 int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor);
 
-//Undersøker om det finnes noen bestillinger
+/**
+ * @brief Checks if there are any orders.
+ * 
+ * @return 1 if there are any orders. 0 otherwise.
+ */
 int queue_have_orders();
 
 #endif

@@ -1,96 +1,45 @@
 #include "queue.h"
-
-//Ble nødvendig å inkludere elev.h for å kunne lese av knappene ved bestillinger
-
 #include <stdlib.h>
 
-//A list of the orders. 
-//Order is sorted by floor. Each floor has DOWN, COMMAND and UP except for 1. and 4. floor. 
-const int ORDER_SIZE = 10;
-static int orders[ORDER_SIZE] = {0};
+//Variabler
+
+const int ORDER_SIZE = 10;              //Antall ulike bestillinger lagret i en array
+static int orders[ORDER_SIZE] = {0};    //Array som har oversikt over alle bestillinger
 
 //Hjelpefunksjoner
 
-//Undersøker om det finnes noen bestillinger over den gitte posisjonen
-int queue_check_if_order_above(int pos){
-    int i;
-    for (i = pos*3 + 2; i < ORDER_SIZE; i++){
-        if(orders[i]){
-            return 1;
-        }
-    }
-    return 0;
-}
+int queue_check_if_order_above(int pos);    //Undersøker om det finnes noen bestillinger over den gitte posisjonen
+int queue_check_if_order_below(int pos);    //Undersøker om det finnes noen bestillinger under den gitte posisjonen
+void queue_set_order_commands();            //Leter etter og lagrer bestillinger fra innsiden av heisen
+void queue_set_order_up();                  //Leter etter og lagrer bestillinger med oppover-knapper
+void queue_set_order_down();                //Leter etter og lagrer bestillinger med nedover-knapper
 
-//Undersøker om det finnes noen bestillinger under den gitte posisjonen
-int queue_check_if_order_below(int pos){
-    int i;
-    for (i = pos*3 - 2; i >= 0; i--){
-        if(orders[i]){
-            return 1;
-        }
-    }
-    return 0;
-}
-
-//Leter etter og lagrer bestillinger fra innsiden av heisen
-void queue_set_order_commands(){
-    int c;
-    for (c = 0; c < N_FLOORS; c++){
-        if(elev_get_button_signal(BUTTON_COMMAND, c)){
-            orders[c*3] = 1;
-        }
-        
-    }
-}
-
-//Leter etter og lagrer bestillinger med oppover-knapper
-void queue_set_order_up(){
-    int u;
-    for (u = 0; u < N_FLOORS - 1; u++){
-        if(elev_get_button_signal(BUTTON_CALL_UP, u)){
-            orders[1 + (u*3)] = 1;
-        }
-    }
-}
-
-//Leter etter og lagrer bestillinger med nedover-knapper
-void queue_set_order_down(){
-    int d;
-    for (d = 1; d < N_FLOORS; d++){
-        if(elev_get_button_signal(BUTTON_CALL_DOWN, d)){
-            orders[(d*3)-1] = 1;
-        }
-    }
-}
-
-//-------------------------------------------------------------------------
-//Public funksjoner
+//Public-funksjoner
 
 void queue_take_order(){
-    queue_set_order_commands(); //Ser etter og lagrer bestillinger fra inni heisen
-    queue_set_order_up();       //Ser etter og lagrer bestillinger med oppover-knapper
-    queue_set_order_down();     //Ser etter og lagrer bestillinger med nedover-knapper
+    queue_set_order_commands(); 
+    queue_set_order_up();     
+    queue_set_order_down();
     
 }
-// Returner 1 dersom det kommer en bestilling til etasje "floor"
+
 int queue_get_order(int floor){
     switch (floor)
     {
         case 0:
-            if (orders[0] | orders[1]) { return 1; }
+            if (orders[0] || orders[1]) { return 1; }
             break;
     
         case 1:
-            if (orders[2] | orders[3] | orders[4]) { return 1; }
+            if (orders[2] || orders[3] || orders[4]) { return 1; }
             break;
         
         case 2:
-            if (orders[5] | orders[6] | orders[7]) { return 1; }
+            if (orders[5] || orders[6] || orders[7]) { return 1; }
             break;
 
         case 3:
-            if (orders[8] | orders[9]) { return 1; }
+            if (orders[8] || orders[9]) { return 1; }
             break;
 
         default:
@@ -166,10 +115,10 @@ elev_motor_direction_t queue_calculate_direction (elev_motor_direction_t prev_di
 }
 
 int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
-    if (floor < 0){ //in case is called between floors
+    if (floor < 0){ //I tilfelle funskjonene kalles mellom etasjer
         return 0;
     }
-    if (((motor_dir == DIRN_DOWN) & (floor == 0)) | ((motor_dir == DIRN_UP) & (floor == 3))){   //Sørger for at heisen ikke kjører forbi endene
+    if (((motor_dir == DIRN_DOWN) && (floor == 0)) || ((motor_dir == DIRN_UP) && (floor == 3))){   //Sørger for at heisen ikke kjører forbi endene
         return 1;
     }
     if (orders[floor*3]){
@@ -178,16 +127,15 @@ int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
     if(orders[floor*3 + motor_dir]){
         return 1;
     }
-    if ((motor_dir == DIRN_UP) & (!(queue_check_if_order_above(floor)))){
+    if ((motor_dir == DIRN_UP) && (!(queue_check_if_order_above(floor)))){
         return 1;
     }
-    if ((motor_dir == DIRN_DOWN) & (!(queue_check_if_order_below(floor)))){
+    if ((motor_dir == DIRN_DOWN) && (!(queue_check_if_order_below(floor)))){
         return 1;
     }
     else {return 0;}
 }
 
-//Undersøker om det finnes noen bestillinger
 int queue_have_orders(){
     int i;
     for (i = 0; i < ORDER_SIZE; i++){
@@ -198,9 +146,52 @@ int queue_have_orders(){
     return 0;
 }
 
+//Implementasjon av hjelpefunksjoner
 
+int queue_check_if_order_above(int pos){
+    int i;
+    for (i = pos*3 + 2; i < ORDER_SIZE; i++){
+        if(orders[i]){
+            return 1;
+        }
+    }
+    return 0;
+}
 
+int queue_check_if_order_below(int pos){
+    int i;
+    for (i = pos*3 - 2; i >= 0; i--){
+        if(orders[i]){
+            return 1;
+        }
+    }
+    return 0;
+}
 
+void queue_set_order_commands(){
+    int c;
+    for (c = 0; c < N_FLOORS; c++){
+        if(elev_get_button_signal(BUTTON_COMMAND, c)){
+            orders[c*3] = 1;
+        }
+        
+    }
+}
 
+void queue_set_order_up(){
+    int u;
+    for (u = 0; u < N_FLOORS - 1; u++){
+        if(elev_get_button_signal(BUTTON_CALL_UP, u)){
+            orders[1 + (u*3)] = 1;
+        }
+    }
+}
 
-
+void queue_set_order_down(){
+    int d;
+    for (d = 1; d < N_FLOORS; d++){
+        if(elev_get_button_signal(BUTTON_CALL_DOWN, d)){
+            orders[(d*3)-1] = 1;
+        }
+    }
+}

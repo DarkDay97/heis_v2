@@ -1,0 +1,50 @@
+\hypertarget{timer_8c}{}\section{source/timer.c File Reference}
+\label{timer_8c}\index{source/timer.\+c@{source/timer.\+c}}
+
+
+Implementation file for the timer module.  
+
+
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
+Include dependency graph for timer.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{timer_8c_a7f1ca02cbf81adb4494ece96457c6c5f}{timer\+\_\+reset} ()\hypertarget{timer_8c_a7f1ca02cbf81adb4494ece96457c6c5f}{}\label{timer_8c_a7f1ca02cbf81adb4494ece96457c6c5f}
+
+\begin{DoxyCompactList}\small\item\em Sets a new timestamp. \end{DoxyCompactList}\item 
+int \hyperlink{timer_8c_aa407a36b99e4dd9072e1fb40c1d793d0}{timer\+\_\+expired} ()
+\begin{DoxyCompactList}\small\item\em Checks if it has been more than T\+I\+M\+E\+\_\+\+L\+I\+M\+IT secounds since last timstamp. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int {\bfseries T\+I\+M\+E\+\_\+\+L\+I\+M\+IT} = 3\hypertarget{timer_8c_a23fdb30abbbaf7369615e5ea2804a8bc}{}\label{timer_8c_a23fdb30abbbaf7369615e5ea2804a8bc}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation file for the timer module. 
+
+
+
+\subsection{Function Documentation}
+\index{timer.\+c@{timer.\+c}!timer\+\_\+expired@{timer\+\_\+expired}}
+\index{timer\+\_\+expired@{timer\+\_\+expired}!timer.\+c@{timer.\+c}}
+\subsubsection[{\texorpdfstring{timer\+\_\+expired()}{timer_expired()}}]{\setlength{\rightskip}{0pt plus 5cm}int timer\+\_\+expired (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{timer_8c_aa407a36b99e4dd9072e1fb40c1d793d0}{}\label{timer_8c_aa407a36b99e4dd9072e1fb40c1d793d0}
+
+
+Checks if it has been more than T\+I\+M\+E\+\_\+\+L\+I\+M\+IT secounds since last timstamp. 
+
+\begin{DoxyReturn}{Returns}
+1 if the time limit has surpassed. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 15 of file timer.\+c.
+

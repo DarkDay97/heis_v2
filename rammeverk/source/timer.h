@@ -1,11 +1,24 @@
+/**
+ * @file
+ * @brief A library containing functions regarding the timer module
+ */
+
 #ifndef _TIMER__
 #define _TIMER__
 
 #include <time.h>
 
-void timer_reset(); //Sets a new timestamp
+/**
+ * @brief Sets a new timestamp.
+ */
+void timer_reset();
 
-int timer_expired(); //Checks if it has been more than 3 secounds since timstamp
+/**
+ * @brief Checks if it has been more than TIME_LIMIT secounds since last timstamp.
+ * 
+ * @return 1 if the time limit has surpassed. 0 otherwise.
+ */
+int timer_expired();
 
 
 

@@ -15,40 +15,36 @@ typedef enum {
     TEST
 } FSM_states_t;
 
+//Variabler
 
-static FSM_states_t current_state = FLOOR_CLOSED;
+static FSM_states_t current_state = FLOOR_CLOSED;       //Holder rede på nåværende tilstand
+static elev_motor_direction_t direction = DIRN_STOP;    //Holder rede på retningen heisen kjører i
+static int prev_pos = -1;                               //Gir posisjonen i 0-3. -1 er ugyldig verdi.
+static int temp_pos = -1;                               //Midlertidig variabel for å forhindre feilavlesning fra etasjesensor
+static int pos_between = 0;                             //Holder rede på posisjonene mellom etasjer. 1-3 for alle mellomtilstander
 
-//Gir posisjonen i 0-3. -1 er ugyldig verdi.
-static int prev_pos = -1;
+//Hjelpefunksjoner
 
-//Midlertidig variabel for å forhindre feilavlesning fra etasjesensor
-static int temp_pos = -1;
+void FSM_update_pos_between(elev_motor_direction_t dir, int pos);
 
-//Holder rede på posisjonene mellom etasjer. 1-3 for alle mellomtilstander
-static int pos_between = 0;
+//Public-funksjoner
 
-static elev_motor_direction_t prev_dir = DIRN_STOP;
+int FSM_system_init(){
+    if (!elev_init()) {
+            printf("Unable to initialize elevator hardware!\n");
+            return 0;
+        }
 
-
-void FSM_system_init(){
     elev_set_motor_direction(DIRN_DOWN);
     while(1){
-        if(elev_get_floor_sensor_signal() == 0){
+        if(elev_get_floor_sensor_signal() + 1){
             elev_set_motor_direction(DIRN_STOP);
-            elev_set_door_open_lamp(0);
+            prev_pos = elev_get_floor_sensor_signal();
             current_state = FLOOR_CLOSED;
-            prev_pos = 0;
             break;
         }
     }
-}
-
-void FSM_update_pos_between(elev_motor_direction_t dir, int pos){
-    if (dir == DIRN_UP){
-        pos_between = pos + 1;
-    } else if (dir == DIRN_DOWN){
-        pos_between = pos;
-    }
+    return 1;
 }
 
 void FSM_state_machine(){
@@ -59,7 +55,7 @@ void FSM_state_machine(){
     
     if(!(elev_get_stop_signal())){
         queue_take_order();
-        lights_set_lights();
+        lights_set_ordering_lights_array();
     }
 
     //printf("prev_pos: %d\n", prev_pos);
@@ -71,11 +67,12 @@ void FSM_state_machine(){
                 elev_set_door_open_lamp(1);
                 current_state = FLOOR_OPEN;
                 break;
-            } else if (queue_have_orders()){
-                prev_dir = queue_calculate_direction(prev_dir, prev_pos, 0);
-                if(prev_dir){
-                    elev_set_motor_direction(prev_dir);
-                    FSM_update_pos_between(prev_dir, prev_pos);
+            }
+            if (queue_have_orders()){
+                direction = queue_calculate_direction(direction, prev_pos, 0);
+                if(direction){
+                    elev_set_motor_direction(direction);
+                    FSM_update_pos_between(direction, prev_pos);
                     current_state = MOVING;
                     break;
                 } else {
@@ -84,8 +81,6 @@ void FSM_state_machine(){
                     current_state = FLOOR_OPEN;
                     break;
                 }
-            } else if (!queue_have_orders()){
-                prev_dir = DIRN_STOP;
             }
             break;
 
@@ -94,11 +89,11 @@ void FSM_state_machine(){
                 timer_reset();
             }
             queue_delete_order(prev_pos);
-            lights_reset_lights(prev_pos);
+            lights_reset_ordering_lights_array(prev_pos);
             if (elev_get_stop_signal()){
                 timer_reset();
                 queue_delete_all_orders();
-                lights_reset_all_lights();
+                lights_reset_all_ordering_lights_array();
                 break;
             }
             if (timer_expired()){
@@ -114,20 +109,20 @@ void FSM_state_machine(){
             if (elev_get_stop_signal()){
                 elev_set_motor_direction(DIRN_STOP);
                 queue_delete_all_orders();
-                lights_reset_all_lights();
+                lights_reset_all_ordering_lights_array();
                 current_state = STATIONARY;
                 break;
             }
             if (temp_pos + 1){
                 prev_pos = temp_pos;
                 elev_set_floor_indicator(prev_pos);
-                if (queue_should_stop_at_floor(prev_dir, prev_pos)){
+                if (queue_should_stop_at_floor(direction, prev_pos)){
                     elev_set_motor_direction(DIRN_STOP);
                     timer_reset();
                     elev_set_door_open_lamp(1);
                     current_state = FLOOR_OPEN;
                 } else {
-                    FSM_update_pos_between(prev_dir, prev_pos);
+                    FSM_update_pos_between(direction, prev_pos);
                     // oppdater etasjelys
                 }
             }
@@ -136,10 +131,10 @@ void FSM_state_machine(){
         case STATIONARY:
             if (elev_get_stop_signal()){
                 queue_delete_all_orders();
-                lights_reset_all_lights();
+                lights_reset_all_ordering_lights_array();
             } else if (queue_have_orders()){
-                prev_dir = queue_calculate_direction(prev_dir, prev_pos, pos_between); 
-                elev_set_motor_direction(prev_dir);
+                direction = queue_calculate_direction(direction, prev_pos, pos_between); 
+                elev_set_motor_direction(direction);
                 current_state = MOVING;
             }
             break;
@@ -150,5 +145,15 @@ void FSM_state_machine(){
 
         default:
             break;
+    }
+}
+
+//Implementasjon av hjelpefunksjoner
+
+void FSM_update_pos_between(elev_motor_direction_t dir, int pos){
+    if (dir == DIRN_UP){
+        pos_between = pos + 1;
+    } else if (dir == DIRN_DOWN){
+        pos_between = pos;
     }
 }

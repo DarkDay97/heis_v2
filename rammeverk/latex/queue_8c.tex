@@ -1,0 +1,175 @@
+\hypertarget{queue_8c}{}\section{source/queue.c File Reference}
+\label{queue_8c}\index{source/queue.\+c@{source/queue.\+c}}
+
+
+Implementation file for the queue module.  
+
+
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+Include dependency graph for queue.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries queue\+\_\+check\+\_\+if\+\_\+order\+\_\+above} (int pos)\hypertarget{queue_8c_a94cf2844e2284f6732aee540f4449e6e}{}\label{queue_8c_a94cf2844e2284f6732aee540f4449e6e}
+
+\item 
+int {\bfseries queue\+\_\+check\+\_\+if\+\_\+order\+\_\+below} (int pos)\hypertarget{queue_8c_a1ca9b544e437207202f8220247e91623}{}\label{queue_8c_a1ca9b544e437207202f8220247e91623}
+
+\item 
+void {\bfseries queue\+\_\+set\+\_\+order\+\_\+commands} ()\hypertarget{queue_8c_aa7a44ff846c59512087ceb229f23b04d}{}\label{queue_8c_aa7a44ff846c59512087ceb229f23b04d}
+
+\item 
+void {\bfseries queue\+\_\+set\+\_\+order\+\_\+up} ()\hypertarget{queue_8c_a818221e86567bbe51f27f44b4b545cbc}{}\label{queue_8c_a818221e86567bbe51f27f44b4b545cbc}
+
+\item 
+void {\bfseries queue\+\_\+set\+\_\+order\+\_\+down} ()\hypertarget{queue_8c_a1e1c8dc89a2ca02c5cc337edb8640ab9}{}\label{queue_8c_a1e1c8dc89a2ca02c5cc337edb8640ab9}
+
+\item 
+void \hyperlink{queue_8c_a35a940db362073d0e6f2de5c98ca8642}{queue\+\_\+take\+\_\+order} ()\hypertarget{queue_8c_a35a940db362073d0e6f2de5c98ca8642}{}\label{queue_8c_a35a940db362073d0e6f2de5c98ca8642}
+
+\begin{DoxyCompactList}\small\item\em Sets the value in the array \char`\"{}orders\char`\"{} to the corresponding order to 1. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a8db0e454b9930c5cd767d158d9e46ebc}{queue\+\_\+get\+\_\+order} (int floor)
+\begin{DoxyCompactList}\small\item\em Checks if there are any orders to given floor. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8c_af136c602c4abb11df25cf6e362407e0f}{queue\+\_\+delete\+\_\+order} (int floor)
+\begin{DoxyCompactList}\small\item\em Sets the value in the array \char`\"{}orders\char`\"{} to the corresponding order to 0. \end{DoxyCompactList}\item 
+void \hyperlink{queue_8c_a25ddb5a68fbbd63e2ceb905b3c57595f}{queue\+\_\+delete\+\_\+all\+\_\+orders} ()\hypertarget{queue_8c_a25ddb5a68fbbd63e2ceb905b3c57595f}{}\label{queue_8c_a25ddb5a68fbbd63e2ceb905b3c57595f}
+
+\begin{DoxyCompactList}\small\item\em Sets all values in the array \char`\"{}orders\char`\"{} to 0. \end{DoxyCompactList}\item 
+\hyperlink{elev_8h_a2256dfd58fecce253106f83fd2ed607f}{elev\+\_\+motor\+\_\+direction\+\_\+t} \hyperlink{queue_8c_ae1318c7bf5c2321a99432394e0cf4515}{queue\+\_\+calculate\+\_\+direction} (\hyperlink{elev_8h_a2256dfd58fecce253106f83fd2ed607f}{elev\+\_\+motor\+\_\+direction\+\_\+t} prev\+\_\+dir, int pos, int pos\+\_\+between)
+\begin{DoxyCompactList}\small\item\em Calculates the elevator\textquotesingle{}s next direction. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a9bda618087afe5dc6c669643b2628537}{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor} (\hyperlink{elev_8h_a2256dfd58fecce253106f83fd2ed607f}{elev\+\_\+motor\+\_\+direction\+\_\+t} motor\+\_\+dir, int floor)
+\begin{DoxyCompactList}\small\item\em Checks if the elevator should stop at the given floor. \end{DoxyCompactList}\item 
+int \hyperlink{queue_8c_a03cce911f28d999c0647e7ce9e928ff9}{queue\+\_\+have\+\_\+orders} ()
+\begin{DoxyCompactList}\small\item\em Checks if there are any orders. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+const int {\bfseries O\+R\+D\+E\+R\+\_\+\+S\+I\+ZE} = 10\hypertarget{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}{}\label{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation file for the queue module. 
+
+
+
+\subsection{Function Documentation}
+\index{queue.\+c@{queue.\+c}!queue\+\_\+calculate\+\_\+direction@{queue\+\_\+calculate\+\_\+direction}}
+\index{queue\+\_\+calculate\+\_\+direction@{queue\+\_\+calculate\+\_\+direction}!queue.\+c@{queue.\+c}}
+\subsubsection[{\texorpdfstring{queue\+\_\+calculate\+\_\+direction(elev\+\_\+motor\+\_\+direction\+\_\+t prev\+\_\+dir, int pos, int pos\+\_\+between)}{queue_calculate_direction(elev_motor_direction_t prev_dir, int pos, int pos_between)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf elev\+\_\+motor\+\_\+direction\+\_\+t} queue\+\_\+calculate\+\_\+direction (
+\begin{DoxyParamCaption}
+\item[{{\bf elev\+\_\+motor\+\_\+direction\+\_\+t}}]{dir, }
+\item[{int}]{pos, }
+\item[{int}]{pos\+\_\+between}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8c_ae1318c7bf5c2321a99432394e0cf4515}{}\label{queue_8c_ae1318c7bf5c2321a99432394e0cf4515}
+
+
+Calculates the elevator\textquotesingle{}s next direction. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em dir} & The direction of the elevator\textquotesingle{}s movement. Must have the following values\+: D\+I\+R\+N\+\_\+\+D\+O\+WN = -\/1, D\+I\+R\+N\+\_\+\+S\+T\+OP = 0 or D\+I\+R\+N\+\_\+\+UP = 1.\\
+\hline
+\mbox{\tt in}  & {\em pos} & Previous detected floor by sensor. Must be in range 0-\/3.\\
+\hline
+\mbox{\tt in}  & {\em pos\+\_\+between} & Keeps track of which floors the elevator is located between at any given time. Must be in range 1-\/3.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+D\+I\+R\+N\+\_\+\+D\+O\+WN = -\/1 when moving down. D\+I\+R\+N\+\_\+\+S\+T\+OP = 0 when stationary. D\+I\+R\+N\+\_\+\+UP = 1 when moving up. 
+\end{DoxyReturn}
+
+
+Definition at line 144 of file queue.\+c.
+
+\index{queue.\+c@{queue.\+c}!queue\+\_\+delete\+\_\+order@{queue\+\_\+delete\+\_\+order}}
+\index{queue\+\_\+delete\+\_\+order@{queue\+\_\+delete\+\_\+order}!queue.\+c@{queue.\+c}}
+\subsubsection[{\texorpdfstring{queue\+\_\+delete\+\_\+order(int floor)}{queue_delete_order(int floor)}}]{\setlength{\rightskip}{0pt plus 5cm}void queue\+\_\+delete\+\_\+order (
+\begin{DoxyParamCaption}
+\item[{int}]{floor}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8c_af136c602c4abb11df25cf6e362407e0f}{}\label{queue_8c_af136c602c4abb11df25cf6e362407e0f}
+
+
+Sets the value in the array \char`\"{}orders\char`\"{} to the corresponding order to 0. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em floor} & The floor where the function deletes the corresponding orders. Must be an integer in range 0-\/3. \\
+\hline
+\end{DoxyParams}
+
+
+Definition at line 107 of file queue.\+c.
+
+\index{queue.\+c@{queue.\+c}!queue\+\_\+get\+\_\+order@{queue\+\_\+get\+\_\+order}}
+\index{queue\+\_\+get\+\_\+order@{queue\+\_\+get\+\_\+order}!queue.\+c@{queue.\+c}}
+\subsubsection[{\texorpdfstring{queue\+\_\+get\+\_\+order(int floor)}{queue_get_order(int floor)}}]{\setlength{\rightskip}{0pt plus 5cm}int queue\+\_\+get\+\_\+order (
+\begin{DoxyParamCaption}
+\item[{int}]{floor}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8c_a8db0e454b9930c5cd767d158d9e46ebc}{}\label{queue_8c_a8db0e454b9930c5cd767d158d9e46ebc}
+
+
+Checks if there are any orders to given floor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em floor} & The floor where the function looks for orders. Must be an integer in range 0-\/3.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if there is an order at floor {\ttfamily floor}. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 82 of file queue.\+c.
+
+\index{queue.\+c@{queue.\+c}!queue\+\_\+have\+\_\+orders@{queue\+\_\+have\+\_\+orders}}
+\index{queue\+\_\+have\+\_\+orders@{queue\+\_\+have\+\_\+orders}!queue.\+c@{queue.\+c}}
+\subsubsection[{\texorpdfstring{queue\+\_\+have\+\_\+orders()}{queue_have_orders()}}]{\setlength{\rightskip}{0pt plus 5cm}int queue\+\_\+have\+\_\+orders (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8c_a03cce911f28d999c0647e7ce9e928ff9}{}\label{queue_8c_a03cce911f28d999c0647e7ce9e928ff9}
+
+
+Checks if there are any orders. 
+
+\begin{DoxyReturn}{Returns}
+1 if there are any orders. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 195 of file queue.\+c.
+
+\index{queue.\+c@{queue.\+c}!queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor@{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor}}
+\index{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor@{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor}!queue.\+c@{queue.\+c}}
+\subsubsection[{\texorpdfstring{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor(elev\+\_\+motor\+\_\+direction\+\_\+t motor\+\_\+dir, int floor)}{queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor)}}]{\setlength{\rightskip}{0pt plus 5cm}int queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor (
+\begin{DoxyParamCaption}
+\item[{{\bf elev\+\_\+motor\+\_\+direction\+\_\+t}}]{motor\+\_\+dir, }
+\item[{int}]{floor}
+\end{DoxyParamCaption}
+)}\hypertarget{queue_8c_a9bda618087afe5dc6c669643b2628537}{}\label{queue_8c_a9bda618087afe5dc6c669643b2628537}
+
+
+Checks if the elevator should stop at the given floor. 
+
+
+\begin{DoxyParams}[1]{Parameters}
+\mbox{\tt in}  & {\em motor\+\_\+dir} & The direction of the elevator\textquotesingle{}s movement. Must have the following values\+: D\+I\+R\+N\+\_\+\+D\+O\+WN = -\/1, D\+I\+R\+N\+\_\+\+S\+T\+OP = 0 or D\+I\+R\+N\+\_\+\+UP = 1.\\
+\hline
+\mbox{\tt in}  & {\em floor} & The floor where the function checks if it should stop. Must be an integer in range 0-\/3.\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+1 if elevator should stop. 0 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 173 of file queue.\+c.
+

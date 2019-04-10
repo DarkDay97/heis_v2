@@ -1,0 +1,65 @@
+\hypertarget{FSM_8c}{}\section{source/\+F\+SM.c File Reference}
+\label{FSM_8c}\index{source/\+F\+S\+M.\+c@{source/\+F\+S\+M.\+c}}
+
+
+Implementation file for the F\+SM (Finite-\/state machine) module.  
+
+
+{\ttfamily \#include \char`\"{}F\+S\+M.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}elev.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
+{\ttfamily \#include \char`\"{}lights.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+Include dependency graph for F\+S\+M.\+c\+:
+% FIG 0
+\subsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum {\bfseries F\+S\+M\+\_\+states\+\_\+t} \{ \\*
+{\bfseries F\+L\+O\+O\+R\+\_\+\+C\+L\+O\+S\+ED}, 
+{\bfseries F\+L\+O\+O\+R\+\_\+\+O\+P\+EN}, 
+{\bfseries M\+O\+V\+I\+NG}, 
+{\bfseries S\+T\+A\+T\+I\+O\+N\+A\+RY}, 
+\\*
+{\bfseries T\+E\+ST}
+ \}\hypertarget{FSM_8c_a90fb9bfd3b356116f67efce8fe4722a0}{}\label{FSM_8c_a90fb9bfd3b356116f67efce8fe4722a0}
+
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{FSM_8c_a5e55d574485ebc87b5d5a74a1a4b35e0}{F\+S\+M\+\_\+system\+\_\+init} ()
+\begin{DoxyCompactList}\small\item\em Initializes hardware and leads the elevator to a defined state and position. \end{DoxyCompactList}\item 
+void {\bfseries F\+S\+M\+\_\+update\+\_\+pos\+\_\+between} (\hyperlink{elev_8h_a2256dfd58fecce253106f83fd2ed607f}{elev\+\_\+motor\+\_\+direction\+\_\+t} dir, int pos)\hypertarget{FSM_8c_a57a6e1152dd5267e9f37e909ffb72e7e}{}\label{FSM_8c_a57a6e1152dd5267e9f37e909ffb72e7e}
+
+\item 
+void \hyperlink{FSM_8c_a6e0568e2069dc494c5c9014a396b3900}{F\+S\+M\+\_\+state\+\_\+machine} ()\hypertarget{FSM_8c_a6e0568e2069dc494c5c9014a396b3900}{}\label{FSM_8c_a6e0568e2069dc494c5c9014a396b3900}
+
+\begin{DoxyCompactList}\small\item\em Updates current state of the elevator and executes operations accordingly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Implementation file for the F\+SM (Finite-\/state machine) module. 
+
+
+
+\subsection{Function Documentation}
+\index{F\+S\+M.\+c@{F\+S\+M.\+c}!F\+S\+M\+\_\+system\+\_\+init@{F\+S\+M\+\_\+system\+\_\+init}}
+\index{F\+S\+M\+\_\+system\+\_\+init@{F\+S\+M\+\_\+system\+\_\+init}!F\+S\+M.\+c@{F\+S\+M.\+c}}
+\subsubsection[{\texorpdfstring{F\+S\+M\+\_\+system\+\_\+init()}{FSM_system_init()}}]{\setlength{\rightskip}{0pt plus 5cm}int F\+S\+M\+\_\+system\+\_\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{FSM_8c_a5e55d574485ebc87b5d5a74a1a4b35e0}{}\label{FSM_8c_a5e55d574485ebc87b5d5a74a1a4b35e0}
+
+
+Initializes hardware and leads the elevator to a defined state and position. 
+
+\begin{DoxyReturn}{Returns}
+0 if the elevator hardware is unable to initialize, 1 otherwise. 
+\end{DoxyReturn}
+
+
+Definition at line 38 of file F\+S\+M.\+c.
+
