@@ -4,7 +4,7 @@
 //Variabler
 
 const int ORDER_SIZE = 10;              //Antall ulike bestillinger lagret i en array
-static int orders[ORDER_SIZE] = {0};    //Array som har oversikt over alle bestillinger
+static int m_orders[ORDER_SIZE] = {0};    //Array som har oversikt over alle bestillinger
 
 //Hjelpefunksjoner
 
@@ -27,19 +27,19 @@ int queue_get_order(int floor){
     switch (floor)
     {
         case 0:
-            if (orders[0] || orders[1]) { return 1; }
+            if (m_orders[0] || m_orders[1]) { return 1; }
             break;
     
         case 1:
-            if (orders[2] || orders[3] || orders[4]) { return 1; }
+            if (m_orders[2] || m_orders[3] || m_orders[4]) { return 1; }
             break;
         
         case 2:
-            if (orders[5] || orders[6] || orders[7]) { return 1; }
+            if (m_orders[5] || m_orders[6] || m_orders[7]) { return 1; }
             break;
 
         case 3:
-            if (orders[8] || orders[9]) { return 1; }
+            if (m_orders[8] || m_orders[9]) { return 1; }
             break;
 
         default:
@@ -52,25 +52,25 @@ void queue_delete_order(int floor){
     switch (floor)
     {
         case 0:
-            orders[0] = 0;
-            orders[1] = 0;
+            m_orders[0] = 0;
+            m_orders[1] = 0;
             break;
     
         case 1:
-            orders[2] = 0;
-            orders[3] = 0;
-            orders[4] = 0;
+            m_orders[2] = 0;
+            m_orders[3] = 0;
+            m_orders[4] = 0;
             break;
         
         case 2:
-            orders[5] = 0;
-            orders[6] = 0;
-            orders[7] = 0;
+            m_orders[5] = 0;
+            m_orders[6] = 0;
+            m_orders[7] = 0;
             break;
 
         case 3:
-            orders[8] = 0;
-            orders[9] = 0;
+            m_orders[8] = 0;
+            m_orders[9] = 0;
             break;
 
         default:
@@ -121,10 +121,10 @@ int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
     if (((motor_dir == DIRN_DOWN) && (floor == 0)) || ((motor_dir == DIRN_UP) && (floor == 3))){   //Sørger for at heisen ikke kjører forbi endene
         return 1;
     }
-    if (orders[floor*3]){
+    if (m_orders[floor*3]){
         return 1;
     }
-    if(orders[floor*3 + motor_dir]){
+    if(m_orders[floor*3 + motor_dir]){
         return 1;
     }
     if ((motor_dir == DIRN_UP) && (!(queue_check_if_order_above(floor)))){
@@ -139,7 +139,7 @@ int queue_should_stop_at_floor(elev_motor_direction_t motor_dir, int floor){
 int queue_have_orders(){
     int i;
     for (i = 0; i < ORDER_SIZE; i++){
-        if(orders[i]){
+        if(m_orders[i]){
             return 1;
         }
     }
@@ -151,7 +151,7 @@ int queue_have_orders(){
 int queue_check_if_order_above(int pos){
     int i;
     for (i = pos*3 + 2; i < ORDER_SIZE; i++){
-        if(orders[i]){
+        if(m_orders[i]){
             return 1;
         }
     }
@@ -161,7 +161,7 @@ int queue_check_if_order_above(int pos){
 int queue_check_if_order_below(int pos){
     int i;
     for (i = pos*3 - 2; i >= 0; i--){
-        if(orders[i]){
+        if(m_orders[i]){
             return 1;
         }
     }
@@ -172,7 +172,7 @@ void queue_set_order_commands(){
     int c;
     for (c = 0; c < N_FLOORS; c++){
         if(elev_get_button_signal(BUTTON_COMMAND, c)){
-            orders[c*3] = 1;
+            m_orders[c*3] = 1;
         }
         
     }
@@ -182,7 +182,7 @@ void queue_set_order_up(){
     int u;
     for (u = 0; u < N_FLOORS - 1; u++){
         if(elev_get_button_signal(BUTTON_CALL_UP, u)){
-            orders[1 + (u*3)] = 1;
+            m_orders[1 + (u*3)] = 1;
         }
     }
 }
@@ -191,7 +191,7 @@ void queue_set_order_down(){
     int d;
     for (d = 1; d < N_FLOORS; d++){
         if(elev_get_button_signal(BUTTON_CALL_DOWN, d)){
-            orders[(d*3)-1] = 1;
+            m_orders[(d*3)-1] = 1;
         }
     }
 }
