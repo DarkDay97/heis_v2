@@ -2,30 +2,36 @@
 \label{lights_8c}\index{source/lights.\+c@{source/lights.\+c}}
 
 
-Implementation file for the lights module.  
+Implentation file regarding the lights module.  
 
 
 {\ttfamily \#include \char`\"{}lights.\+h\char`\"{}}\\*
 Include dependency graph for lights.\+c\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=160pt]{lights_8c__incl}
+\end{center}
+\end{figure}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-void {\bfseries lights\+\_\+set\+\_\+lights\+\_\+command} ()\hypertarget{lights_8c_a25af341922a9439c339f35c151bb02ca}{}\label{lights_8c_a25af341922a9439c339f35c151bb02ca}
+void \hyperlink{lights_8c_add63f7837141be6313f3ea649a219334}{lights\+\_\+set\+\_\+ordering\+\_\+lights\+\_\+command} ()\hypertarget{lights_8c_add63f7837141be6313f3ea649a219334}{}\label{lights_8c_add63f7837141be6313f3ea649a219334}
 
-\item 
-void {\bfseries lights\+\_\+set\+\_\+lights\+\_\+up} ()\hypertarget{lights_8c_afa8ba028db1e1a66136bc09099b596b0}{}\label{lights_8c_afa8ba028db1e1a66136bc09099b596b0}
+\begin{DoxyCompactList}\small\item\em Checks the signal from the command buttons and sets the value at the corresponding position in the array \char`\"{}lights\char`\"{} to 1. \end{DoxyCompactList}\item 
+void \hyperlink{lights_8c_a521fc236d5cd04d9d0c9c6cc2047881e}{lights\+\_\+set\+\_\+ordering\+\_\+lights\+\_\+up} ()\hypertarget{lights_8c_a521fc236d5cd04d9d0c9c6cc2047881e}{}\label{lights_8c_a521fc236d5cd04d9d0c9c6cc2047881e}
 
-\item 
-void {\bfseries lights\+\_\+set\+\_\+lights\+\_\+down} ()\hypertarget{lights_8c_ae0e27c675a592f6bc8a072835a5df82a}{}\label{lights_8c_ae0e27c675a592f6bc8a072835a5df82a}
+\begin{DoxyCompactList}\small\item\em Checks the signal from the up buttons and sets the value at the corresponding position in the array \char`\"{}lights\char`\"{} to 1. \end{DoxyCompactList}\item 
+void \hyperlink{lights_8c_a8cd744900f1d35427f3a8a8deb39f9a9}{lights\+\_\+set\+\_\+ordering\+\_\+lights\+\_\+down} ()\hypertarget{lights_8c_a8cd744900f1d35427f3a8a8deb39f9a9}{}\label{lights_8c_a8cd744900f1d35427f3a8a8deb39f9a9}
 
-\item 
-void \hyperlink{lights_8c_a3c3b7cf2e4b61c1830f26da19bab93c0}{lights\+\_\+set\+\_\+lights\+\_\+array} ()\hypertarget{lights_8c_a3c3b7cf2e4b61c1830f26da19bab93c0}{}\label{lights_8c_a3c3b7cf2e4b61c1830f26da19bab93c0}
+\begin{DoxyCompactList}\small\item\em Checks the signal from the down buttons and sets the value at the corresponding position in the array \char`\"{}lights\char`\"{} to 1. \end{DoxyCompactList}\item 
+void \hyperlink{lights_8c_ab9fdad0624f78e12a34b9aed0e501604}{lights\+\_\+set\+\_\+ordering\+\_\+lights\+\_\+array} ()\hypertarget{lights_8c_ab9fdad0624f78e12a34b9aed0e501604}{}\label{lights_8c_ab9fdad0624f78e12a34b9aed0e501604}
 
 \begin{DoxyCompactList}\small\item\em Gets signal from ordering button, and sets the corresponding element in the \char`\"{}lights\char`\"{} array to 1. \end{DoxyCompactList}\item 
-void \hyperlink{lights_8c_a58b09ecf86cc9bea3fa553d42e42201e}{lights\+\_\+reset\+\_\+lights\+\_\+array} (int floor)
+void \hyperlink{lights_8c_a9581cca0e3b21bb9db5d4dac1f5d04fd}{lights\+\_\+reset\+\_\+ordering\+\_\+lights\+\_\+array} (int floor)
 \begin{DoxyCompactList}\small\item\em Sets the values in the array \char`\"{}lights\char`\"{} for the ordering lights to the corresponding floor to 0. \end{DoxyCompactList}\item 
-void \hyperlink{lights_8c_a525e8ec717482b4c1803e43727d077e4}{lights\+\_\+reset\+\_\+all\+\_\+lights\+\_\+array} ()\hypertarget{lights_8c_a525e8ec717482b4c1803e43727d077e4}{}\label{lights_8c_a525e8ec717482b4c1803e43727d077e4}
+void \hyperlink{lights_8c_ab9e40612b431e6952a2b51b6b20c6843}{lights\+\_\+reset\+\_\+all\+\_\+ordering\+\_\+lights\+\_\+array} ()\hypertarget{lights_8c_ab9e40612b431e6952a2b51b6b20c6843}{}\label{lights_8c_ab9e40612b431e6952a2b51b6b20c6843}
 
 \begin{DoxyCompactList}\small\item\em Sets all the values in the array \char`\"{}lights\char`\"{} to 0. \end{DoxyCompactList}\item 
 void \hyperlink{lights_8c_af2210991bdfe739662bce1dd46388d27}{lights\+\_\+update\+\_\+ordering\+\_\+lights} ()\hypertarget{lights_8c_af2210991bdfe739662bce1dd46388d27}{}\label{lights_8c_af2210991bdfe739662bce1dd46388d27}
@@ -40,18 +46,18 @@ const int {\bfseries L\+I\+G\+H\+T\+\_\+\+S\+I\+ZE} = 10\hypertarget{lights_8c_a
 
 
 \subsection{Detailed Description}
-Implementation file for the lights module. 
+Implentation file regarding the lights module. 
 
 
 
 \subsection{Function Documentation}
-\index{lights.\+c@{lights.\+c}!lights\+\_\+reset\+\_\+lights\+\_\+array@{lights\+\_\+reset\+\_\+lights\+\_\+array}}
-\index{lights\+\_\+reset\+\_\+lights\+\_\+array@{lights\+\_\+reset\+\_\+lights\+\_\+array}!lights.\+c@{lights.\+c}}
-\subsubsection[{\texorpdfstring{lights\+\_\+reset\+\_\+lights\+\_\+array(int floor)}{lights_reset_lights_array(int floor)}}]{\setlength{\rightskip}{0pt plus 5cm}void lights\+\_\+reset\+\_\+lights\+\_\+array (
+\index{lights.\+c@{lights.\+c}!lights\+\_\+reset\+\_\+ordering\+\_\+lights\+\_\+array@{lights\+\_\+reset\+\_\+ordering\+\_\+lights\+\_\+array}}
+\index{lights\+\_\+reset\+\_\+ordering\+\_\+lights\+\_\+array@{lights\+\_\+reset\+\_\+ordering\+\_\+lights\+\_\+array}!lights.\+c@{lights.\+c}}
+\subsubsection[{\texorpdfstring{lights\+\_\+reset\+\_\+ordering\+\_\+lights\+\_\+array(int floor)}{lights_reset_ordering_lights_array(int floor)}}]{\setlength{\rightskip}{0pt plus 5cm}void lights\+\_\+reset\+\_\+ordering\+\_\+lights\+\_\+array (
 \begin{DoxyParamCaption}
 \item[{int}]{floor}
 \end{DoxyParamCaption}
-)}\hypertarget{lights_8c_a58b09ecf86cc9bea3fa553d42e42201e}{}\label{lights_8c_a58b09ecf86cc9bea3fa553d42e42201e}
+)}\hypertarget{lights_8c_a9581cca0e3b21bb9db5d4dac1f5d04fd}{}\label{lights_8c_a9581cca0e3b21bb9db5d4dac1f5d04fd}
 
 
 Sets the values in the array \char`\"{}lights\char`\"{} for the ordering lights to the corresponding floor to 0. 
@@ -63,5 +69,5 @@ Sets the values in the array \char`\"{}lights\char`\"{} for the ordering lights 
 \end{DoxyParams}
 
 
-Definition at line 44 of file lights.\+c.
+Definition at line 39 of file lights.\+c.
 

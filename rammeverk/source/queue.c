@@ -8,7 +8,16 @@
 
 //Variabler
 
+/**
+ * @brief Length of the array "orders"
+ * 
+ */
 const int ORDER_SIZE = 10;              //Antall ulike bestillinger lagret i en array
+
+/**
+ * @brief An array where all the orders are stored
+ * 
+ */
 static int m_orders[ORDER_SIZE] = {0};    //Array som har oversikt over alle bestillinger
 
 //Hjelpefunksjoner
