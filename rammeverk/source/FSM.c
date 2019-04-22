@@ -58,13 +58,15 @@ void FSM_state_machine(){
         lights_set_ordering_lights_array();
     }
 
-    //printf("m_prev_pos: %d\n", m_prev_pos);
 
     switch (m_current_state)
     {
         case FLOOR_CLOSED:
             if (elev_get_stop_signal()){
                 elev_set_door_open_lamp(1);
+                queue_delete_all_orders();
+                lights_reset_all_ordering_lights_array();
+                timer_reset();
                 m_current_state = FLOOR_OPEN;
                 break;
             }
