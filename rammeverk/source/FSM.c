@@ -11,8 +11,7 @@ typedef enum {
     FLOOR_CLOSED, 
     FLOOR_OPEN,
     MOVING, 
-    STATIONARY,
-    TEST
+    STATIONARY
 } FSM_states_t;
 
 //Variabler
@@ -124,7 +123,6 @@ void FSM_state_machine(){
                     m_current_state = FLOOR_OPEN;
                 } else {
                     FSM_update_m_pos_between(m_direction, m_prev_pos);
-                    // oppdater etasjelys
                 }
             }
             break;
@@ -138,10 +136,6 @@ void FSM_state_machine(){
                 elev_set_motor_direction(m_direction);
                 m_current_state = MOVING;
             }
-            break;
-
-        case TEST:
-            /* code */
             break;
 
         default:
