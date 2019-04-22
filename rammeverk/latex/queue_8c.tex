@@ -7,8 +7,7 @@ Implementation file for the queue module.
 
 {\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
-Include dependency graph for queue.\+c\+:
-\nopagebreak
+Include dependency graph for queue.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -50,9 +49,12 @@ int \hyperlink{queue_8c_a03cce911f28d999c0647e7ce9e928ff9}{queue\+\_\+have\+\_\+
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const int {\bfseries O\+R\+D\+E\+R\+\_\+\+S\+I\+ZE} = 10\hypertarget{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}{}\label{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}
+const int \hyperlink{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}{O\+R\+D\+E\+R\+\_\+\+S\+I\+ZE} = 10\hypertarget{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}{}\label{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Length of the array \char`\"{}orders\char`\"{}. \end{DoxyCompactList}\item 
+static int \hyperlink{queue_8c_a6c2d392f4de205266f7d0d0f0d62c86c}{m\+\_\+orders} \mbox{[}\hyperlink{queue_8c_a8b39957d8636cc75a159ab478ec0bcc5}{O\+R\+D\+E\+R\+\_\+\+S\+I\+ZE}\mbox{]} = \{0\}\hypertarget{queue_8c_a6c2d392f4de205266f7d0d0f0d62c86c}{}\label{queue_8c_a6c2d392f4de205266f7d0d0f0d62c86c}
+
+\begin{DoxyCompactList}\small\item\em An array where each element represent a spesific order. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -88,7 +90,7 @@ D\+I\+R\+N\+\_\+\+D\+O\+WN = -\/1 when moving down. D\+I\+R\+N\+\_\+\+S\+T\+OP =
 \end{DoxyReturn}
 
 
-Definition at line 121 of file queue.\+c.
+Definition at line 128 of file queue.\+c.
 
 \index{queue.\+c@{queue.\+c}!queue\+\_\+check\+\_\+if\+\_\+order\+\_\+above@{queue\+\_\+check\+\_\+if\+\_\+order\+\_\+above}}
 \index{queue\+\_\+check\+\_\+if\+\_\+order\+\_\+above@{queue\+\_\+check\+\_\+if\+\_\+order\+\_\+above}!queue.\+c@{queue.\+c}}
@@ -108,7 +110,7 @@ Checks if there are any orders above the current position.
 \end{DoxyParams}
 
 
-Definition at line 184 of file queue.\+c.
+Definition at line 191 of file queue.\+c.
 
 \index{queue.\+c@{queue.\+c}!queue\+\_\+check\+\_\+if\+\_\+order\+\_\+below@{queue\+\_\+check\+\_\+if\+\_\+order\+\_\+below}}
 \index{queue\+\_\+check\+\_\+if\+\_\+order\+\_\+below@{queue\+\_\+check\+\_\+if\+\_\+order\+\_\+below}!queue.\+c@{queue.\+c}}
@@ -128,7 +130,7 @@ Checks if there are any orders belovw the current position.
 \end{DoxyParams}
 
 
-Definition at line 194 of file queue.\+c.
+Definition at line 201 of file queue.\+c.
 
 \index{queue.\+c@{queue.\+c}!queue\+\_\+delete\+\_\+order@{queue\+\_\+delete\+\_\+order}}
 \index{queue\+\_\+delete\+\_\+order@{queue\+\_\+delete\+\_\+order}!queue.\+c@{queue.\+c}}
@@ -148,7 +150,7 @@ Sets the value in the array \char`\"{}orders\char`\"{} to the corresponding orde
 \end{DoxyParams}
 
 
-Definition at line 84 of file queue.\+c.
+Definition at line 91 of file queue.\+c.
 
 \index{queue.\+c@{queue.\+c}!queue\+\_\+get\+\_\+order@{queue\+\_\+get\+\_\+order}}
 \index{queue\+\_\+get\+\_\+order@{queue\+\_\+get\+\_\+order}!queue.\+c@{queue.\+c}}
@@ -171,7 +173,7 @@ Checks if there are any orders to given floor.
 \end{DoxyReturn}
 
 
-Definition at line 59 of file queue.\+c.
+Definition at line 66 of file queue.\+c.
 
 \index{queue.\+c@{queue.\+c}!queue\+\_\+have\+\_\+orders@{queue\+\_\+have\+\_\+orders}}
 \index{queue\+\_\+have\+\_\+orders@{queue\+\_\+have\+\_\+orders}!queue.\+c@{queue.\+c}}
@@ -189,7 +191,7 @@ Checks if there are any orders.
 \end{DoxyReturn}
 
 
-Definition at line 172 of file queue.\+c.
+Definition at line 179 of file queue.\+c.
 
 \index{queue.\+c@{queue.\+c}!queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor@{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor}}
 \index{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor@{queue\+\_\+should\+\_\+stop\+\_\+at\+\_\+floor}!queue.\+c@{queue.\+c}}
@@ -215,5 +217,5 @@ Checks if the elevator should stop at the given floor.
 \end{DoxyReturn}
 
 
-Definition at line 150 of file queue.\+c.
+Definition at line 157 of file queue.\+c.
 

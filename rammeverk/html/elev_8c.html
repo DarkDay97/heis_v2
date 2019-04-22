@@ -85,7 +85,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#define-members">Macros</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">elev.c File Reference</div>  </div>
 </div><!--header-->
@@ -139,6 +140,13 @@ Functions</h2></td></tr>
 <tr class="separator:a2350a1635233760719700552a6cb0763"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9e81321c63d80ddf1699bc91593cd9d4"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="elev_8c.html#a9e81321c63d80ddf1699bc91593cd9d4">elev_set_button_lamp</a> (<a class="el" href="elev_8h.html#af61c4136fb437a2c49037e5a57c9abda">elev_button_type_t</a> button, int floor, int value)</td></tr>
 <tr class="separator:a9e81321c63d80ddf1699bc91593cd9d4"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:a0b0d752f19074f89098999d4f3cabc24"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><b>lamp_channel_matrix</b> [N_FLOORS][N_BUTTONS]</td></tr>
+<tr class="separator:a0b0d752f19074f89098999d4f3cabc24"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a42be55619fb87c090263446a62adef01"><td class="memItemLeft" align="right" valign="top">static const int&#160;</td><td class="memItemRight" valign="bottom"><b>button_channel_matrix</b> [N_FLOORS][N_BUTTONS]</td></tr>
+<tr class="separator:a42be55619fb87c090263446a62adef01"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation file regarding the elev (elevator) module. </p>
@@ -392,6 +400,51 @@ Functions</h2></td></tr>
 </dl>
 
 <p>Definition at line <a class="el" href="elev_8c_source.html#l00091">91</a> of file <a class="el" href="elev_8c_source.html">elev.c</a>.</p>
+
+</div>
+</div>
+<h2 class="groupheader">Variable Documentation</h2>
+<a class="anchor" id="a42be55619fb87c090263446a62adef01"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int button_channel_matrix[N_FLOORS][N_BUTTONS]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">    {BUTTON_UP1, BUTTON_DOWN1, BUTTON_COMMAND1},</div><div class="line">    {BUTTON_UP2, BUTTON_DOWN2, BUTTON_COMMAND2},</div><div class="line">    {BUTTON_UP3, BUTTON_DOWN3, BUTTON_COMMAND3},</div><div class="line">    {BUTTON_UP4, BUTTON_DOWN4, BUTTON_COMMAND4},</div><div class="line">}</div></div><!-- fragment -->
+<p>Definition at line <a class="el" href="elev_8c_source.html#l00030">30</a> of file <a class="el" href="elev_8c_source.html">elev.c</a>.</p>
+
+</div>
+</div>
+<a class="anchor" id="a0b0d752f19074f89098999d4f3cabc24"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">const int lamp_channel_matrix[N_FLOORS][N_BUTTONS]</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<b>Initial value:</b><div class="fragment"><div class="line">= {</div><div class="line">    {LIGHT_UP1, LIGHT_DOWN1, LIGHT_COMMAND1},</div><div class="line">    {LIGHT_UP2, LIGHT_DOWN2, LIGHT_COMMAND2},</div><div class="line">    {LIGHT_UP3, LIGHT_DOWN3, LIGHT_COMMAND3},</div><div class="line">    {LIGHT_UP4, LIGHT_DOWN4, LIGHT_COMMAND4},</div><div class="line">}</div></div><!-- fragment -->
+<p>Definition at line <a class="el" href="elev_8c_source.html#l00022">22</a> of file <a class="el" href="elev_8c_source.html">elev.c</a>.</p>
 
 </div>
 </div>

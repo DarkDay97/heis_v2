@@ -6,8 +6,7 @@ The implementation file of the timer module.
 
 
 {\ttfamily \#include \char`\"{}timer.\+h\char`\"{}}\\*
-Include dependency graph for timer.\+c\+:
-\nopagebreak
+Include dependency graph for timer.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -25,9 +24,12 @@ int \hyperlink{timer_8c_aa407a36b99e4dd9072e1fb40c1d793d0}{timer\+\_\+expired} (
 \subsection*{Variables}
 \begin{DoxyCompactItemize}
 \item 
-const int {\bfseries T\+I\+M\+E\+\_\+\+L\+I\+M\+IT} = 3\hypertarget{timer_8c_a23fdb30abbbaf7369615e5ea2804a8bc}{}\label{timer_8c_a23fdb30abbbaf7369615e5ea2804a8bc}
+const int \hyperlink{timer_8c_a23fdb30abbbaf7369615e5ea2804a8bc}{T\+I\+M\+E\+\_\+\+L\+I\+M\+IT} = 3\hypertarget{timer_8c_a23fdb30abbbaf7369615e5ea2804a8bc}{}\label{timer_8c_a23fdb30abbbaf7369615e5ea2804a8bc}
 
-\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em How long the delay timer is given in seconds. \end{DoxyCompactList}\item 
+static clock\+\_\+t \hyperlink{timer_8c_a5bb3a6b8ef3b3c782b35712024378c7c}{clock\+\_\+var}\hypertarget{timer_8c_a5bb3a6b8ef3b3c782b35712024378c7c}{}\label{timer_8c_a5bb3a6b8ef3b3c782b35712024378c7c}
+
+\begin{DoxyCompactList}\small\item\em The clock used to see if T\+I\+M\+E\+\_\+\+L\+I\+M\+IT seconds have passed. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -52,5 +54,5 @@ Checks if it has been more than T\+I\+M\+E\+\_\+\+L\+I\+M\+IT secounds since las
 \end{DoxyReturn}
 
 
-Definition at line 19 of file timer.\+c.
+Definition at line 27 of file timer.\+c.
 

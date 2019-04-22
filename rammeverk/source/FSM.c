@@ -21,10 +21,29 @@ typedef enum {
 
 //Variabler
 
+/**
+ * @brief The current state of the system
+ */
 static FSM_states_t m_current_state = FLOOR_CLOSED;       //Holder rede på nåværende tilstand
+
+/**
+ * @brief The current direction of the elevator
+ */
 static elev_motor_direction_t m_direction = DIRN_STOP;    //Holder rede på retningen heisen kjører i
+
+/**
+ * @brief The previos floor the elevator was located at. 0-3 where 0 is the bottom floor and 3 is the top floor. -1 is an invalid value
+ */
 static int m_prev_pos = -1;                               //Gir posisjonen i 0-3. -1 er ugyldig verdi.
+
+/**
+ * @brief A temporary variable used to avoid reading error from the floor sensors. 0-3 where 0 is the bottom floor and 3 is the top floor. -1 is an invalid value
+ */
 static int m_temp_pos = -1;                               //Midlertidig variabel for å forhindre feilavlesning fra etasjesensor
+
+/**
+ * @brief Variable used to keep track of wich two floors the elevator is located between as it moves. 1-3 where 1 is between floors 1 and 2. 
+  */
 static int m_pos_between = 0;                             //Holder rede på posisjonene mellom etasjer. 1-3 for alle mellomtilstander
 
 //Hjelpefunksjoner

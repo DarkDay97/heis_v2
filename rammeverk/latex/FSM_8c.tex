@@ -11,8 +11,7 @@ Implementation file for the F\+SM (Finite-\/state machine) module.
 {\ttfamily \#include \char`\"{}queue.\+h\char`\"{}}\\*
 {\ttfamily \#include \char`\"{}lights.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$stdio.\+h$>$}\\*
-Include dependency graph for F\+S\+M.\+c\+:
-\nopagebreak
+Include dependency graph for F\+S\+M.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -39,6 +38,24 @@ int \hyperlink{FSM_8c_a5e55d574485ebc87b5d5a74a1a4b35e0}{F\+S\+M\+\_\+system\+\_
 void \hyperlink{FSM_8c_a6e0568e2069dc494c5c9014a396b3900}{F\+S\+M\+\_\+state\+\_\+machine} ()\hypertarget{FSM_8c_a6e0568e2069dc494c5c9014a396b3900}{}\label{FSM_8c_a6e0568e2069dc494c5c9014a396b3900}
 
 \begin{DoxyCompactList}\small\item\em Updates current state of the elevator and executes operations accordingly. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static F\+S\+M\+\_\+states\+\_\+t \hyperlink{FSM_8c_aafbb17ec8f22877b3b8ed45d657a85ab}{m\+\_\+current\+\_\+state} = F\+L\+O\+O\+R\+\_\+\+C\+L\+O\+S\+ED\hypertarget{FSM_8c_aafbb17ec8f22877b3b8ed45d657a85ab}{}\label{FSM_8c_aafbb17ec8f22877b3b8ed45d657a85ab}
+
+\begin{DoxyCompactList}\small\item\em The current state of the system. \end{DoxyCompactList}\item 
+static \hyperlink{elev_8h_a2256dfd58fecce253106f83fd2ed607f}{elev\+\_\+motor\+\_\+direction\+\_\+t} \hyperlink{FSM_8c_a0a85b6d1e7960e7dbdad8813e26dad6a}{m\+\_\+direction} = D\+I\+R\+N\+\_\+\+S\+T\+OP\hypertarget{FSM_8c_a0a85b6d1e7960e7dbdad8813e26dad6a}{}\label{FSM_8c_a0a85b6d1e7960e7dbdad8813e26dad6a}
+
+\begin{DoxyCompactList}\small\item\em The current direction of the elevator. \end{DoxyCompactList}\item 
+static int \hyperlink{FSM_8c_a49746bb03046c26e7ed748ae4704ba8d}{m\+\_\+prev\+\_\+pos} = -\/1\hypertarget{FSM_8c_a49746bb03046c26e7ed748ae4704ba8d}{}\label{FSM_8c_a49746bb03046c26e7ed748ae4704ba8d}
+
+\begin{DoxyCompactList}\small\item\em The previos floor the elevator was located at. 0-\/3 where 0 is the bottom floor and 3 is the top floor. -\/1 is an invalid value. \end{DoxyCompactList}\item 
+static int \hyperlink{FSM_8c_a730ab0afd4f7387cc3b2753b60d94498}{m\+\_\+temp\+\_\+pos} = -\/1\hypertarget{FSM_8c_a730ab0afd4f7387cc3b2753b60d94498}{}\label{FSM_8c_a730ab0afd4f7387cc3b2753b60d94498}
+
+\begin{DoxyCompactList}\small\item\em A temporary variable used to avoid reading error from the floor sensors. 0-\/3 where 0 is the bottom floor and 3 is the top floor. -\/1 is an invalid value. \end{DoxyCompactList}\item 
+static int \hyperlink{FSM_8c_aa3050385b8dc1c27488abf829fc3a9ca}{m\+\_\+pos\+\_\+between} = 0\hypertarget{FSM_8c_aa3050385b8dc1c27488abf829fc3a9ca}{}\label{FSM_8c_aa3050385b8dc1c27488abf829fc3a9ca}
+
+\begin{DoxyCompactList}\small\item\em Variable used to keep track of wich two floors the elevator is located between as it moves. 1-\/3 where 1 is between floors 1 and 2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
@@ -63,7 +80,7 @@ Initializes hardware and leads the elevator to a defined state and position.
 \end{DoxyReturn}
 
 
-Definition at line 46 of file F\+S\+M.\+c.
+Definition at line 65 of file F\+S\+M.\+c.
 
 \index{F\+S\+M.\+c@{F\+S\+M.\+c}!F\+S\+M\+\_\+update\+\_\+m\+\_\+pos\+\_\+between@{F\+S\+M\+\_\+update\+\_\+m\+\_\+pos\+\_\+between}}
 \index{F\+S\+M\+\_\+update\+\_\+m\+\_\+pos\+\_\+between@{F\+S\+M\+\_\+update\+\_\+m\+\_\+pos\+\_\+between}!F\+S\+M.\+c@{F\+S\+M.\+c}}
@@ -89,5 +106,5 @@ A number 1-\/3 representing the three possible areas between the floors
 \end{DoxyReturn}
 
 
-Definition at line 165 of file F\+S\+M.\+c.
+Definition at line 184 of file F\+S\+M.\+c.
 

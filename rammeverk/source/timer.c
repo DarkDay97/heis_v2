@@ -7,7 +7,15 @@
 
 //Variabler
 
+/**
+ * @brief How long the delay timer is given in seconds
+ */
 const int TIME_LIMIT = 3;
+
+/**
+ * @brief The clock used to see if TIME_LIMIT seconds have passed
+ * 
+ */
 static clock_t clock_var;
 
 //Public-funksjoner

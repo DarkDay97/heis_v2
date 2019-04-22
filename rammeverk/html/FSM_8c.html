@@ -85,7 +85,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
 <div class="header">
   <div class="summary">
 <a href="#enum-members">Enumerations</a> &#124;
-<a href="#func-members">Functions</a>  </div>
+<a href="#func-members">Functions</a> &#124;
+<a href="#var-members">Variables</a>  </div>
   <div class="headertitle">
 <div class="title">FSM.c File Reference</div>  </div>
 </div><!--header-->
@@ -135,6 +136,29 @@ Functions</h2></td></tr>
 void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_8c.html#a6e0568e2069dc494c5c9014a396b3900">FSM_state_machine</a> ()</td></tr>
 <tr class="memdesc:a6e0568e2069dc494c5c9014a396b3900"><td class="mdescLeft">&#160;</td><td class="mdescRight">Updates current state of the elevator and executes operations accordingly. <br /></td></tr>
 <tr class="separator:a6e0568e2069dc494c5c9014a396b3900"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="var-members"></a>
+Variables</h2></td></tr>
+<tr class="memitem:aafbb17ec8f22877b3b8ed45d657a85ab"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aafbb17ec8f22877b3b8ed45d657a85ab"></a>
+static FSM_states_t&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_8c.html#aafbb17ec8f22877b3b8ed45d657a85ab">m_current_state</a> = FLOOR_CLOSED</td></tr>
+<tr class="memdesc:aafbb17ec8f22877b3b8ed45d657a85ab"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current state of the system. <br /></td></tr>
+<tr class="separator:aafbb17ec8f22877b3b8ed45d657a85ab"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0a85b6d1e7960e7dbdad8813e26dad6a"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0a85b6d1e7960e7dbdad8813e26dad6a"></a>
+static <a class="el" href="elev_8h.html#a2256dfd58fecce253106f83fd2ed607f">elev_motor_direction_t</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_8c.html#a0a85b6d1e7960e7dbdad8813e26dad6a">m_direction</a> = DIRN_STOP</td></tr>
+<tr class="memdesc:a0a85b6d1e7960e7dbdad8813e26dad6a"><td class="mdescLeft">&#160;</td><td class="mdescRight">The current direction of the elevator. <br /></td></tr>
+<tr class="separator:a0a85b6d1e7960e7dbdad8813e26dad6a"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a49746bb03046c26e7ed748ae4704ba8d"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a49746bb03046c26e7ed748ae4704ba8d"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_8c.html#a49746bb03046c26e7ed748ae4704ba8d">m_prev_pos</a> = -1</td></tr>
+<tr class="memdesc:a49746bb03046c26e7ed748ae4704ba8d"><td class="mdescLeft">&#160;</td><td class="mdescRight">The previos floor the elevator was located at. 0-3 where 0 is the bottom floor and 3 is the top floor. -1 is an invalid value. <br /></td></tr>
+<tr class="separator:a49746bb03046c26e7ed748ae4704ba8d"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a730ab0afd4f7387cc3b2753b60d94498"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a730ab0afd4f7387cc3b2753b60d94498"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_8c.html#a730ab0afd4f7387cc3b2753b60d94498">m_temp_pos</a> = -1</td></tr>
+<tr class="memdesc:a730ab0afd4f7387cc3b2753b60d94498"><td class="mdescLeft">&#160;</td><td class="mdescRight">A temporary variable used to avoid reading error from the floor sensors. 0-3 where 0 is the bottom floor and 3 is the top floor. -1 is an invalid value. <br /></td></tr>
+<tr class="separator:a730ab0afd4f7387cc3b2753b60d94498"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa3050385b8dc1c27488abf829fc3a9ca"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="aa3050385b8dc1c27488abf829fc3a9ca"></a>
+static int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_8c.html#aa3050385b8dc1c27488abf829fc3a9ca">m_pos_between</a> = 0</td></tr>
+<tr class="memdesc:aa3050385b8dc1c27488abf829fc3a9ca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Variable used to keep track of wich two floors the elevator is located between as it moves. 1-3 where 1 is between floors 1 and 2. <br /></td></tr>
+<tr class="separator:aa3050385b8dc1c27488abf829fc3a9ca"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p>Implementation file for the FSM (Finite-state machine) module. </p>
@@ -157,7 +181,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_
 <p>Initializes hardware and leads the elevator to a defined state and position. </p>
 <dl class="section return"><dt>Returns</dt><dd>0 if the elevator hardware is unable to initialize, 1 otherwise. </dd></dl>
 
-<p>Definition at line <a class="el" href="FSM_8c_source.html#l00046">46</a> of file <a class="el" href="FSM_8c_source.html">FSM.c</a>.</p>
+<p>Definition at line <a class="el" href="FSM_8c_source.html#l00065">65</a> of file <a class="el" href="FSM_8c_source.html">FSM.c</a>.</p>
 
 </div>
 </div>
@@ -195,7 +219,7 @@ void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="FSM_
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A number 1-3 representing the three possible areas between the floors </dd></dl>
 
-<p>Definition at line <a class="el" href="FSM_8c_source.html#l00165">165</a> of file <a class="el" href="FSM_8c_source.html">FSM.c</a>.</p>
+<p>Definition at line <a class="el" href="FSM_8c_source.html#l00184">184</a> of file <a class="el" href="FSM_8c_source.html">FSM.c</a>.</p>
 
 </div>
 </div>

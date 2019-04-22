@@ -10,8 +10,7 @@ Implementation file regarding the elev (elevator) module.
 {\ttfamily \#include \char`\"{}io.\+h\char`\"{}}\\*
 {\ttfamily \#include $<$assert.\+h$>$}\\*
 {\ttfamily \#include $<$stdlib.\+h$>$}\\*
-Include dependency graph for elev.\+c\+:
-\nopagebreak
+Include dependency graph for elev.\+c\+:\nopagebreak
 \begin{figure}[H]
 \begin{center}
 \leavevmode
@@ -46,6 +45,13 @@ void \hyperlink{elev_8c_a6af53dd3ebae3a5791ba345eac84d4be}{elev\+\_\+set\+\_\+fl
 int \hyperlink{elev_8c_a2350a1635233760719700552a6cb0763}{elev\+\_\+get\+\_\+button\+\_\+signal} (\hyperlink{elev_8h_af61c4136fb437a2c49037e5a57c9abda}{elev\+\_\+button\+\_\+type\+\_\+t} button, int floor)
 \item 
 void \hyperlink{elev_8c_a9e81321c63d80ddf1699bc91593cd9d4}{elev\+\_\+set\+\_\+button\+\_\+lamp} (\hyperlink{elev_8h_af61c4136fb437a2c49037e5a57c9abda}{elev\+\_\+button\+\_\+type\+\_\+t} button, int floor, int value)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+static const int {\bfseries lamp\+\_\+channel\+\_\+matrix} \mbox{[}N\+\_\+\+F\+L\+O\+O\+RS\mbox{]}\mbox{[}N\+\_\+\+B\+U\+T\+T\+O\+NS\mbox{]}
+\item 
+static const int {\bfseries button\+\_\+channel\+\_\+matrix} \mbox{[}N\+\_\+\+F\+L\+O\+O\+RS\mbox{]}\mbox{[}N\+\_\+\+B\+U\+T\+T\+O\+NS\mbox{]}
 \end{DoxyCompactItemize}
 
 
@@ -218,4 +224,39 @@ Turn stop lamp on or off.
 
 
 Definition at line 91 of file elev.\+c.
+
+
+
+\subsection{Variable Documentation}
+\index{elev.\+c@{elev.\+c}!button\+\_\+channel\+\_\+matrix@{button\+\_\+channel\+\_\+matrix}}
+\index{button\+\_\+channel\+\_\+matrix@{button\+\_\+channel\+\_\+matrix}!elev.\+c@{elev.\+c}}
+\subsubsection[{\texorpdfstring{button\+\_\+channel\+\_\+matrix}{button_channel_matrix}}]{\setlength{\rightskip}{0pt plus 5cm}const int button\+\_\+channel\+\_\+matrix\mbox{[}N\+\_\+\+F\+L\+O\+O\+RS\mbox{]}\mbox{[}N\+\_\+\+B\+U\+T\+T\+O\+NS\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{elev_8c_a42be55619fb87c090263446a62adef01}{}\label{elev_8c_a42be55619fb87c090263446a62adef01}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+    \{BUTTON\_UP1, BUTTON\_DOWN1, BUTTON\_COMMAND1\},
+    \{BUTTON\_UP2, BUTTON\_DOWN2, BUTTON\_COMMAND2\},
+    \{BUTTON\_UP3, BUTTON\_DOWN3, BUTTON\_COMMAND3\},
+    \{BUTTON\_UP4, BUTTON\_DOWN4, BUTTON\_COMMAND4\},
+\}
+\end{DoxyCode}
+
+
+Definition at line 30 of file elev.\+c.
+
+\index{elev.\+c@{elev.\+c}!lamp\+\_\+channel\+\_\+matrix@{lamp\+\_\+channel\+\_\+matrix}}
+\index{lamp\+\_\+channel\+\_\+matrix@{lamp\+\_\+channel\+\_\+matrix}!elev.\+c@{elev.\+c}}
+\subsubsection[{\texorpdfstring{lamp\+\_\+channel\+\_\+matrix}{lamp_channel_matrix}}]{\setlength{\rightskip}{0pt plus 5cm}const int lamp\+\_\+channel\+\_\+matrix\mbox{[}N\+\_\+\+F\+L\+O\+O\+RS\mbox{]}\mbox{[}N\+\_\+\+B\+U\+T\+T\+O\+NS\mbox{]}\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{elev_8c_a0b0d752f19074f89098999d4f3cabc24}{}\label{elev_8c_a0b0d752f19074f89098999d4f3cabc24}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= \{
+    \{LIGHT\_UP1, LIGHT\_DOWN1, LIGHT\_COMMAND1\},
+    \{LIGHT\_UP2, LIGHT\_DOWN2, LIGHT\_COMMAND2\},
+    \{LIGHT\_UP3, LIGHT\_DOWN3, LIGHT\_COMMAND3\},
+    \{LIGHT\_UP4, LIGHT\_DOWN4, LIGHT\_COMMAND4\},
+\}
+\end{DoxyCode}
+
+
+Definition at line 22 of file elev.\+c.
 

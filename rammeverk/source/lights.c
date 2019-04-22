@@ -7,7 +7,14 @@
 
 //Variabler
 
+/**
+ * @brief Length of the array "lights"
+  */
 const int LIGHT_SIZE = 10;              //Antall ulike bestlillingslys
+
+/**
+ * @brief An array where each element represents a spesific ordering light
+ */
 static int lights[LIGHT_SIZE] = {0};    //Array som har oversikt over hvilke lys som skal være på og av.
 
 //Hjelpefunksjoner
