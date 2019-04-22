@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief Implementation file for the queue module
+ */
+
 #include "queue.h"
 #include <stdlib.h>
 
@@ -8,11 +13,39 @@ static int m_orders[ORDER_SIZE] = {0};    //Array som har oversikt over alle bes
 
 //Hjelpefunksjoner
 
-int queue_check_if_order_above(int pos);    //Undersøker om det finnes noen bestillinger over den gitte posisjonen
-int queue_check_if_order_below(int pos);    //Undersøker om det finnes noen bestillinger under den gitte posisjonen
-void queue_set_order_commands();            //Leter etter og lagrer bestillinger fra innsiden av heisen
-void queue_set_order_up();                  //Leter etter og lagrer bestillinger med oppover-knapper
-void queue_set_order_down();                //Leter etter og lagrer bestillinger med nedover-knapper
+
+/**
+ * @brief Checks if there are any orders above the current position
+ * 
+ * @param[int] pos The current position
+ * 
+ * @return 1 if there are any orders above the current position. 0 otherwise.
+ */
+int queue_check_if_order_above(int pos);    
+
+/**
+ * @brief Checks if there are any orders belovw the current position
+ * 
+ * @param[int] pos The current position
+ * 
+ * @return 1 if there are any orders below the current position. 0 otherwise.
+ */
+int queue_check_if_order_below(int pos); 
+
+/**
+ * @brief Checks if there are any command orders and stores them at the corresponding element in the array "orders"
+ *  */
+void queue_set_order_commands();
+
+/**
+ * @brief Checks if there are any up orders and stores them at the corresponding element in the array "orders"
+ *  */
+void queue_set_order_up();
+
+/**
+ * @brief Checks if there are any down orders and stores them at the corresponding element in the array "orders"
+ *  */
+void queue_set_order_down();
 
 //Public-funksjoner
 

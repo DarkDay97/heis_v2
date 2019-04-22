@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief Implentation file regarding the lights module
+ */
+
 #include "lights.h"
 
 //Variabler
@@ -7,8 +12,20 @@ static int lights[LIGHT_SIZE] = {0};    //Array som har oversikt over hvilke lys
 
 //Hjelpefunksjoner
 
+
+/**
+ * @brief Checks the signal from the command buttons and sets the value at the corresponding position in the array "lights" to 1
+ */ 
 void lights_set_ordering_lights_command();
+
+/**
+ * @brief Checks the signal from the up buttons and sets the value at the corresponding position in the array "lights" to 1
+ */ 
 void lights_set_ordering_lights_up();
+
+/**
+ * @brief Checks the signal from the down buttons and sets the value at the corresponding position in the array "lights" to 1
+ */ 
 void lights_set_ordering_lights_down();
 
 //Public-funksjoner

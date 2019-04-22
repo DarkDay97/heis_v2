@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief The implementation file of the timer module
+ */
+
 #include "timer.h"
 
 //Variabler

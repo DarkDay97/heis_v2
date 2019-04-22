@@ -5,8 +5,6 @@
 
 //These functions dictate the logic behind the queue-system
 
-//2019, Audun Birkenes og Jonas Rogde Jørgensen
-
 #ifndef QUEUE_H__
 #define QUEUE_H__
 

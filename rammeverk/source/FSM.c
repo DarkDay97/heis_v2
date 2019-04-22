@@ -1,3 +1,8 @@
+/**
+ * @file
+ * @brief Implementation file for the FSM (Finite-state machine) module
+ */
+
 #include "FSM.h"
 #include "elev.h"
 #include "timer.h"
@@ -24,6 +29,16 @@ static int m_pos_between = 0;                             //Holder rede på posi
 
 //Hjelpefunksjoner
 
+
+/**
+ * @brief Updates the variable m_pos_between in order to keep track of which two floors the elevator is currently between
+ * 
+ * @param[in] dir The current direction of the elevator
+ * 
+ * @param[in] pos The previos floor the elevator was located at
+ * 
+ * @return A number 1-3 representing the three possible areas between the floors
+ */ 
 void FSM_update_m_pos_between(elev_motor_direction_t dir, int pos);
 
 //Public-funksjoner
